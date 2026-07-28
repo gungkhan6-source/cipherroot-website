@@ -1,0 +1,10 @@
+{
+  "title": "Beyond WebGL: Mastering WebGPU and the Power of WGSL",
+  "slug": "beyond-webgl-mastering-webgpu-and-the-power-of-wgsl",
+  "date": "2026-06-02",
+  "category": "Web & Browser",
+  "author": "CipherRoot Software",
+  "cover": "/blog/beyond-webgl-mastering-webgpu-and-the-power-of-wgsl.avif",
+  "excerpt": "For nearly a decade, WebGL was the undisputed standard for bringing 3D graphics and complex visual rendering to the web browser. It allowed developers to escape the limitations of…",
+  "order": 5
+}

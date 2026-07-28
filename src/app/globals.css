@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================
+   CipherRoot Software — Design System v1.0
+   Dark only. Blue = primary brand. Purple = secondary accent
+   (background glow, gradients, subtle accent lighting only).
+
+   Tokens below mirror the colors already used in the project.
+   Nothing is recolored here — values are only given names.
+   Components migrate to these tokens one at a time in Phase 3.
+============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Surfaces (mevcut arbitrary değerlerin karşılığı) --- */
+  --color-surface-0: #000000; /* bg-black        */
+  --color-surface-1: #050505; /* Stats, Download */
+  --color-surface-2: #070707; /* LatestArticles  */
+  --color-surface-3: #090909; /* sayfa arkaplanı */
+
+  /* --- Card surface (raised above the page background) --- */
+  --color-card: #18181b; /* zinc-900 */
+
+  /* --- Status --- */
+  --color-success: #22c55e; /* green-500 */
+  --color-warning: #eab308; /* yellow-500 */
+
+  /* --- Lines --- */
+  --color-line: #27272a;        /* zinc-800 */
+  --color-line-strong: #3f3f46; /* zinc-700 */
+
+  /* --- Brand: blue (primary) --- */
+  --color-brand: #2563eb;       /* blue-600 */
+  --color-brand-hover: #1d4ed8; /* blue-700 */
+  --color-brand-mid: #3b82f6;   /* blue-500 */
+  --color-brand-light: #60a5fa; /* blue-400 */
+
+  /* --- Accent: purple (secondary — glow & gradients only) --- */
+  --color-accent: #7c3aed;      /* violet-600 */
+  --color-accent-soft: #a78bfa; /* violet-400 */
+
+  /* --- Text --- */
+  --color-ink: #ffffff;
+  --color-ink-muted: #a1a1aa; /* zinc-400 */
+
+  /* --- Typography (Geist is wired in Phase 1 / Step 2) --- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface-0);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-brand) 40%, transparent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-light);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

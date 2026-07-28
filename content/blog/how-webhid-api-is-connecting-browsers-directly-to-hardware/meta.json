@@ -1,0 +1,10 @@
+{
+  "title": "How WebHID API is Connecting Browsers Directly to Hardware",
+  "slug": "how-webhid-api-is-connecting-browsers-directly-to-hardware",
+  "date": "2026-06-02",
+  "category": "Web & Browser",
+  "author": "CipherRoot Software",
+  "cover": "/blog/how-webhid-api-is-connecting-browsers-directly-to-hardware.avif",
+  "excerpt": "For decades, web browsers were deliberately isolated from the user's physical computer hardware. Due to strict security frameworks, a web page could only interact with the outside…",
+  "order": 9
+}
