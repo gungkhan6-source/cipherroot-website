@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/siteConfig";
@@ -18,6 +19,10 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+// Google AdSense publisher ID — used by both the verification meta tag
+// and the ad script below.
+const ADSENSE_CLIENT = "ca-pub-9981866376896465";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 
@@ -27,6 +32,10 @@ export const metadata: Metadata = {
   },
 
   description: siteConfig.description,
+
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT,
+  },
 
   keywords: [
     "CipherRoot Software",
@@ -99,6 +108,14 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+
+        <Script
+          id="google-adsense"
+          async
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+        />
 
         <Header />
         {children}
