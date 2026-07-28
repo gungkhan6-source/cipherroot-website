@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/siteConfig";
-import { organizationJsonLd } from "@/lib/jsonLd";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -83,6 +83,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd()),
+          }}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()),
           }}
         />
 

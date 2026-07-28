@@ -23,9 +23,9 @@ export default function ProductCard({ app }: Props) {
         />
       </div>
 
-      <h3 className="mt-6 text-center text-2xl font-bold text-ink sm:mt-8 sm:text-3xl">
+      <h2 className="mt-6 text-center text-2xl font-bold text-ink sm:mt-8 sm:text-3xl">
         {app.name}
-      </h3>
+      </h2>
 
       <div className="mt-4 flex justify-center">
         <span

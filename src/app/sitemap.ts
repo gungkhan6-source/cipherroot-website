@@ -57,5 +57,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}/terms-of-service`,
       priority: 0.4,
     },
+
+    {
+      url: `${siteConfig.url}/cookie-policy`,
+      priority: 0.4,
+    },
   ];
 }

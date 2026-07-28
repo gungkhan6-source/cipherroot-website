@@ -4,9 +4,9 @@ export default function NewsletterForm() {
       aria-describedby="newsletter-status"
       className="mt-8 max-w-md lg:mt-0"
     >
-      <h3 className="text-lg font-semibold text-ink">
+      <h2 className="text-lg font-semibold text-ink">
         Stay updated
-      </h3>
+      </h2>
 
       <p id="newsletter-status" className="mt-3 text-sm text-ink-muted">
         Subscribing is coming soon. The form is not active yet.

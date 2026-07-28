@@ -44,9 +44,9 @@ export default function Footer() {
           {columns.map((column) => (
             <nav key={column.id} aria-labelledby={column.id}>
 
-              <h3 id={column.id} className="mb-5 text-lg font-semibold">
+              <h2 id={column.id} className="mb-5 text-lg font-semibold">
                 {column.title}
-              </h3>
+              </h2>
 
               <ul className="space-y-3 text-ink-muted">
                 {column.links.map((item) => (
@@ -63,9 +63,9 @@ export default function Footer() {
 
           <nav aria-labelledby="footer-contact">
 
-            <h3 id="footer-contact" className="mb-5 text-lg font-semibold">
+            <h2 id="footer-contact" className="mb-5 text-lg font-semibold">
               Contact
-            </h3>
+            </h2>
 
             <ul className="space-y-3 text-ink-muted">
 
@@ -99,9 +99,9 @@ export default function Footer() {
 
           <nav aria-labelledby="footer-legal">
 
-            <h3 id="footer-legal" className="mb-5 text-lg font-semibold">
+            <h2 id="footer-legal" className="mb-5 text-lg font-semibold">
               Legal
-            </h3>
+            </h2>
 
             <ul className="space-y-3 text-ink-muted">
               {siteConfig.footer.legal.map((item) => (
