@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CipherRoot Website
 
-## Getting Started
+Official website and web platform for CipherRoot Software.
 
-First, run the development server:
+CipherRoot Website is a modern web application built with Next.js and TypeScript, providing a foundation for presenting software projects, digital products, and development work.
+
+## ✨ Features
+
+- 🌐 Modern web interface
+- 📱 Responsive design
+- ⚡ Next.js App Router
+- 🧩 TypeScript-based development
+- 🎨 CSS-based styling
+- 🔤 Optimized font loading with `next/font`
+- 🚀 Production-ready Next.js architecture
+- 📦 Vercel deployment support
+
+## 🛠️ Technologies
+
+- Next.js
+- React
+- TypeScript
+- CSS
+- JavaScript
+- Node.js
+- npm
+
+## 🚀 Getting Started
+
+Clone the repository:
 
 ```bash
+git clone https://github.com/gungkhan6-source/cipherroot-website.git
+cd cipherroot-website
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the application in your browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
+📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project uses the Next.js App Router architecture.
 
-## Learn More
+cipherroot-website/
+│
+├── app/
+│   ├── page.tsx
+│   └── ...
+│
+├── public/
+│   └── ...
+│
+├── package.json
+├── tsconfig.json
+└── ...
+🏗️ Development
 
-To learn more about Next.js, take a look at the following resources:
+The main application page can be developed through:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+app/page.tsx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js automatically updates the browser during development when source files are modified.
 
-## Deploy on Vercel
+📦 Production Build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create an optimized production build:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run build
+
+Start the production server:
+
+npm start
+☁️ Deployment
+
+The project is designed to be compatible with Vercel and other platforms capable of hosting Next.js applications.
+
+🎯 Project Purpose
+
+CipherRoot Website serves as a central web presence for CipherRoot Software and its software development projects.
+
+The platform is intended to evolve alongside future applications, tools, and digital products.
+
+🔮 Future Development
+
+Planned improvements may include:
+
+Additional project pages
+Software product showcases
+Blog and development articles
+Improved SEO
+Performance optimizations
+Additional responsive UI components
+Integration with future CipherRoot Software projects
+📄 License
+
+See the repository license for details.
+
+Part of the CipherRoot Software ecosystem.
