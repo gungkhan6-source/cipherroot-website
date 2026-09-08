@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/lib/siteConfig";
+import { siteConfig } from "@/config/site.config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -19,9 +19,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Google AdSense publisher ID — used by both the verification meta tag
-// and the ad script below.
-const ADSENSE_CLIENT = "ca-pub-9981866376896465";
+const adsenseClient = siteConfig.integrations.googleAdSenseId;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -33,28 +31,23 @@ export const metadata: Metadata = {
 
   description: siteConfig.description,
 
-  other: {
-    "google-adsense-account": ADSENSE_CLIENT,
-  },
+  ...(adsenseClient
+    ? {
+        other: {
+          "google-adsense-account": adsenseClient,
+        },
+      }
+    : {}),
 
-  keywords: [
-    "CipherRoot Software",
-    "Android",
-    "Gunner DNS",
-    "NovaRec",
-    "Retro Pixel Football",
-    "Privacy",
-    "Security",
-    "Indie Games",
-  ],
+  keywords: siteConfig.keywords,
 
   authors: [
     {
-      name: "CipherRoot Software",
+      name: siteConfig.name,
     },
   ],
 
-  creator: "CipherRoot Software",
+  creator: siteConfig.name,
 
   openGraph: {
     title: siteConfig.name,
@@ -65,9 +58,8 @@ export const metadata: Metadata = {
     type: "website",
   },
 
-  // favicon.ico is picked up automatically from src/app.
   icons: {
-    apple: "/logo/favicon.png",
+    apple: siteConfig.favicon,
   },
 
   twitter: {
@@ -76,6 +68,27 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
 };
+
+/**
+ * CSS Variable Bridge:
+ * Maps theme colors defined in site.config.ts into runtime CSS variables
+ * that match Tailwind CSS v4 design tokens.
+ */
+const themeVariables = `
+  :root {
+    --color-brand: ${siteConfig.theme.colors.brand};
+    --color-brand-hover: ${siteConfig.theme.colors.brandHover};
+    --color-brand-mid: ${siteConfig.theme.colors.brandMid};
+    --color-brand-light: ${siteConfig.theme.colors.brandLight};
+    --color-accent: ${siteConfig.theme.colors.accent};
+    --color-accent-soft: ${siteConfig.theme.colors.accentSoft};
+    --color-surface-0: ${siteConfig.theme.colors.surface0};
+    --color-surface-1: ${siteConfig.theme.colors.surface1};
+    --color-surface-2: ${siteConfig.theme.colors.surface2};
+    --color-surface-3: ${siteConfig.theme.colors.surface3};
+    --color-card: ${siteConfig.theme.colors.card};
+  }
+`;
 
 export default function RootLayout({
   children,
@@ -87,6 +100,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        <style
+          id="theme-bridge"
+          dangerouslySetInnerHTML={{ __html: themeVariables }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
@@ -109,13 +128,15 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <Script
-          id="google-adsense"
-          async
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-        />
+        {adsenseClient && (
+          <Script
+            id="google-adsense"
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+          />
+        )}
 
         <Header />
         {children}
