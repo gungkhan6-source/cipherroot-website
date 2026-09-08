@@ -1,3 +1,6 @@
+import { digitalProducts } from "./offerings";
+import type { DigitalProductItem } from "@/types/catalog";
+
 export type ProductKind = "app" | "game";
 
 export type ProductStatus = "Available" | "Coming Soon";
@@ -16,54 +19,41 @@ export type Product = {
   playstore?: string;
 };
 
-export const products: Product[] = [
-  {
-    kind: "app",
-    slug: "gunner-dns",
-    name: "Gunner DNS",
-    image: "/images/gunner-dns.webp",
-    tagline: "Privacy Shield & DNS Protection",
-    description:
-      "Privacy-first DNS protection, spyware scanner, ad blocking and network security for Android.",
-    longDescription:
-      "Privacy-first DNS protection with ad blocking, malware filtering, spyware protection and secure browsing for Android.",
-    status: "Available",
-    href: "/apps/gunner-dns",
-    button: "Google Play",
-    playstore:
-      "https://play.google.com/store/apps/details?id=com.gunner.dns&pcampaignid=web_share",
-  },
+/**
+ * Adapter: Converts V2 DigitalProductItem to legacy V1 Product format
+ * to guarantee 100% backward compatibility with V1 components and routes.
+ */
+function toLegacyProduct(item: DigitalProductItem): Product {
+  const primaryRelease =
+    item.releases.find((r) => r.status === "released") ?? item.releases[0];
+  const isAvailable = primaryRelease?.status === "released";
 
-  {
-    kind: "app",
-    slug: "novarec",
-    name: "NovaRec Studio",
-    image: "/images/novarec.webp",
-    tagline: "Mobile Screen Recorder",
-    description:
-      "Professional mobile screen recorder for creators, gameplay, tutorials and high quality recording.",
-    longDescription:
-      "Professional Android screen recorder designed for creators, gamers and educators.",
-    status: "Coming Soon",
-    href: "/apps/novarec",
-    button: "Coming Soon",
-  },
+  return {
+    kind: item.category === "game" ? "game" : "app",
+    slug: item.slug,
+    name: item.name,
+    image: item.image,
+    tagline: item.tagline,
+    description: item.description,
+    longDescription: item.longDescription,
+    status: isAvailable ? "Available" : "Coming Soon",
+    href: item.href,
+    button:
+      primaryRelease?.ctaLabel ?? (isAvailable ? "Download" : "Coming Soon"),
+    playstore: primaryRelease?.storeUrl,
+  };
+}
 
-  {
-    kind: "game",
-    slug: "retro-pixel-football",
-    name: "Retro Pixel Football",
-    image: "/images/pixel-football.webp",
-    tagline: "Coming Soon",
-    description:
-      "Fast arcade football experience inspired by the legendary 90's pixel football classics.",
-    longDescription:
-      "Inspired by legendary 90's football games. Fast gameplay, pixel graphics and arcade action.",
-    status: "Coming Soon",
-    href: "/games/retro-pixel-football",
-    button: "Coming Soon",
-  },
-];
+/**
+ * V1 Active Products:
+ * Keeps the exact 3 products for V1 routes (/apps, /games, /apps/[slug], /games/retro-pixel-football)
+ * until Phase 4 route migration expands all catalog items.
+ */
+const V1_ACTIVE_SLUGS = ["gunner-dns", "novarec", "retro-pixel-football"];
+
+export const products: Product[] = digitalProducts
+  .filter((item) => V1_ACTIVE_SLUGS.includes(item.slug))
+  .map(toLegacyProduct);
 
 export const apps = products.filter((product) => product.kind === "app");
 
