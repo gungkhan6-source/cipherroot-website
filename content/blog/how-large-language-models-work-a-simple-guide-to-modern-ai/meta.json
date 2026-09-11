@@ -1,0 +1,10 @@
+{
+  "title": "How Large Language Models Work: A Simple Guide to Modern AI",
+  "slug": "how-large-language-models-work-a-simple-guide-to-modern-ai",
+  "date": "2026-08-08",
+  "category": "AI & Machine Learning",
+  "author": "CipherRoot Software",
+  "cover": "/blog/how-large-language-models-work-a-simple-guide-to-modern-ai.avif",
+  "excerpt": "Learn how Large Language Models work, from training data and tokenization to Transformers, self-attention, next-token prediction, inference, parameters, and AI-generated responses.",
+  "order": -26
+}

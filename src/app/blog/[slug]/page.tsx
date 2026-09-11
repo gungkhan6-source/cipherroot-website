@@ -102,6 +102,15 @@ export default async function BlogPostPage({ params }: Props) {
                 {block.text}
               </h3>
             )
+          ) : block.type === "list" ? (
+            <ul
+              key={index}
+              className="mt-6 list-disc space-y-2 pl-6 text-pretty leading-8 text-ink-muted"
+            >
+              {block.items.map((item, itemIndex) => (
+                <li key={itemIndex}>{item}</li>
+              ))}
+            </ul>
           ) : (
             <p
               key={index}

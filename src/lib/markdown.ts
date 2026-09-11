@@ -1,13 +1,15 @@
 export type Block =
   | { type: "heading"; level: 2 | 3; text: string }
-  | { type: "paragraph"; text: string };
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
 
 /**
  * Minimal markdown parser.
  *
- * The blog content only uses ATX headings and plain paragraphs — no lists,
- * links, emphasis or code fences — so a full markdown library would be
- * unnecessary weight. If richer syntax is ever needed, replace this file.
+ * The blog content only uses ATX headings, plain paragraphs and simple
+ * unordered lists — no links, emphasis or code fences — so a full markdown
+ * library would be unnecessary weight. If richer syntax is ever needed,
+ * replace this file.
  *
  * Heading levels are shifted down one step so the page <h1> stays unique.
  */
@@ -38,6 +40,24 @@ export function parseMarkdown(source: string): Block[] {
         level: heading[1].length <= 2 ? 2 : 3,
         text: heading[2].trim(),
       });
+      continue;
+    }
+
+    const listItem = /^[-*]\s+(.*)$/.exec(line);
+
+    if (listItem) {
+      flush();
+
+      const previous = blocks[blocks.length - 1];
+
+      // Consecutive items join the same list even when a blank line separates
+      // them, so one run of "- " lines always renders as a single <ul>.
+      if (previous?.type === "list") {
+        previous.items.push(listItem[1].trim());
+      } else {
+        blocks.push({ type: "list", items: [listItem[1].trim()] });
+      }
+
       continue;
     }
 
