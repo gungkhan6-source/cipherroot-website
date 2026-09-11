@@ -89,12 +89,12 @@ export const offerings: CatalogItem[] = [
     name: "Inferno Pool",
     kind: "product",
     category: "game",
-    tagline: "Fast Arcade 8-Ball & Pool Action",
+    tagline: "Online Multiplayer Pool Game",
     description:
-      "Dynamic arcade pool game featuring fast-paced gameplay and vibrant visuals across web and mobile platforms.",
+      "An online multiplayer pool game featuring real-time gameplay, in-game chat, smooth physics and fast-paced arcade action.",
     longDescription:
-      "Dynamic arcade pool game featuring fast-paced gameplay, smooth physics and competitive challenges across major web game portals and mobile.",
-    image: "/images/pixel-football.webp",
+      "Inferno Pool is an online multiplayer pool game currently in development. It combines real-time multiplayer matches, an in-game chat system, smooth ball physics and competitive arcade-style 8-ball gameplay. Releases on web game portals and mobile platforms are planned.",
+    image: "/images/inferno-pool.png",
     featured: false,
     href: "/games/inferno-pool",
     releases: [
@@ -139,16 +139,40 @@ export const offerings: CatalogItem[] = [
     category: "saas",
     tagline: "AI Voice & Text-to-Speech Platform",
     description:
-      "Advanced AI text-to-speech, rich voice library, audio listening, voice download and voice cloning infrastructure.",
+      "AI voice and text-to-speech platform for generating natural voices, creating personalized voice profiles and converting text into high-quality speech.",
     longDescription:
-      "AI Voice & Text-to-Speech platform currently in development. Featuring an expansive voice library, personal voice cloning, multi-language speech generation (Turkish, English, German), audio playback and high-quality voice downloads.",
-    image: "/images/novarec.webp",
+      "AI Voice & Text-to-Speech platform currently in V1 development. Planned capabilities include a natural AI voice library, personal voice cloning, multi-language speech generation (Turkish, English, German), in-browser listening and high-quality audio downloads.",
+    image: "/images/novarec-voice.png",
     featured: false,
     href: "/apps/novarec-voice",
     releases: [
       {
         platform: "web",
         label: "Web Platform",
+        status: "coming-soon",
+        ctaLabel: "Coming Soon",
+      },
+    ],
+  },
+
+  {
+    id: "novarec-lyric-studio",
+    slug: "novarec-lyric-studio",
+    name: "NovaRec Lyric Studio",
+    kind: "product",
+    category: "tool",
+    tagline: "Lyric Video & Music Creation Studio",
+    description:
+      "Desktop studio for creating and editing lyric videos, built around music, timing and visual presentation.",
+    longDescription:
+      "NovaRec Lyric Studio is a Windows desktop application currently in development. It focuses on lyric video creation and editing — arranging lyrics against an audio timeline and producing music visuals. Individual features are still being built and no public release is available yet.",
+    image: "/images/novarec-lyric-studio.png",
+    featured: false,
+    href: "/apps/novarec-lyric-studio",
+    releases: [
+      {
+        platform: "windows",
+        label: "Windows / PC",
         status: "coming-soon",
         ctaLabel: "Coming Soon",
       },

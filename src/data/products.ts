@@ -49,7 +49,14 @@ function toLegacyProduct(item: DigitalProductItem): Product {
  * Keeps the exact 3 products for V1 routes (/apps, /games, /apps/[slug], /games/retro-pixel-football)
  * until Phase 4 route migration expands all catalog items.
  */
-const V1_ACTIVE_SLUGS = ["gunner-dns", "novarec", "retro-pixel-football"];
+const V1_ACTIVE_SLUGS = [
+  "gunner-dns",
+  "novarec",
+  "retro-pixel-football",
+  "inferno-pool",
+  "novarec-voice",
+  "novarec-lyric-studio",
+];
 
 export const products: Product[] = digitalProducts
   .filter((item) => V1_ACTIVE_SLUGS.includes(item.slug))

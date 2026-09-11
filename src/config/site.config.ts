@@ -177,6 +177,9 @@ export const siteConfig: SiteConfig = {
       { label: "Gunner DNS", href: "/apps/gunner-dns" },
       { label: "NovaRec Studio", href: "/apps/novarec" },
       { label: "Retro Pixel Football", href: "/games/retro-pixel-football" },
+      { label: "NovaRec Voice V1", href: "/apps/novarec-voice" },
+      { label: "NovaRec Lyric Studio", href: "/apps/novarec-lyric-studio" },
+      { label: "Inferno Pool", href: "/games/inferno-pool" },
     ],
 
     company: [
