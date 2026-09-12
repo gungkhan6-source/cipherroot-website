@@ -1,12 +1,8 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/siteConfig";
+import { siteConfig } from "@/config/site.config";
+import { navigationConfig } from "@/config/navigation.config";
+import { featuresConfig } from "@/config/features.config";
 import NewsletterForm from "./NewsletterForm";
-
-const columns = [
-  { id: "footer-products", title: "Products", links: siteConfig.footer.products },
-  { id: "footer-company", title: "Company", links: siteConfig.footer.company },
-  { id: "footer-resources", title: "Resources", links: siteConfig.footer.resources },
-];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -31,9 +27,11 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="lg:justify-self-end">
-            <NewsletterForm />
-          </div>
+          {featuresConfig.newsletter && (
+            <div className="lg:justify-self-end">
+              <NewsletterForm />
+            </div>
+          )}
 
         </div>
 
@@ -41,7 +39,7 @@ export default function Footer() {
 
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-line pt-12 lg:grid-cols-5 lg:gap-8">
 
-          {columns.map((column) => (
+          {navigationConfig.footerColumns.map((column) => (
             <nav key={column.id} aria-labelledby={column.id}>
 
               <h2 id={column.id} className="mb-5 text-lg font-semibold">
@@ -104,7 +102,7 @@ export default function Footer() {
             </h2>
 
             <ul className="space-y-3 text-ink-muted">
-              {siteConfig.footer.legal.map((item) => (
+              {navigationConfig.footerLegal.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="transition hover:text-ink">
                     {item.label}

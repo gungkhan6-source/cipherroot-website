@@ -2,15 +2,20 @@ import Link from "next/link";
 import SectionTitle from "./SectionTitle";
 import Section from "./ui/Section";
 import { products } from "@/data/products";
+import { homeContent, type HomeContent } from "@/content/home.content";
 
-export default function DownloadSection() {
+type Props = {
+  content?: HomeContent["downloadCta"];
+};
+
+export default function DownloadSection({ content = homeContent.downloadCta }: Props) {
   return (
     <Section id="download" surface="1">
 
         <SectionTitle
-          badge="Download"
-          title="Download Our Products"
-          description="Access the latest CipherRoot Software applications directly from Google Play."
+          badge={content.badge}
+          title={content.title}
+          description={content.description}
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -36,7 +41,7 @@ export default function DownloadSection() {
                     href={product.playstore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${product.name} on Google Play (opens in a new tab)`}
+                    aria-label={`${product.name} on ${product.button} (opens in a new tab)`}
                     className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:bg-brand-hover xl:w-auto xl:text-base"
                   >
                     {product.button}

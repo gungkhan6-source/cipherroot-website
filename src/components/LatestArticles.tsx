@@ -2,15 +2,20 @@ import SectionTitle from "./SectionTitle";
 import Section from "./ui/Section";
 import PostCard from "./PostCard";
 import { latestPosts } from "@/data/posts";
+import { homeContent, type HomeContent } from "@/content/home.content";
 
-export default function LatestArticles() {
+type Props = {
+  content?: HomeContent["latestArticles"];
+};
+
+export default function LatestArticles({ content = homeContent.latestArticles }: Props) {
   return (
     <Section id="blog" surface="2">
 
       <SectionTitle
-        badge="Latest Articles"
-        title="Insights & Development"
-        description="Follow our latest technical articles, development diaries and software engineering insights."
+        badge={content.badge}
+        title={content.title}
+        description={content.description}
       />
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

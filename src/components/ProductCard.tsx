@@ -2,8 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/data/products";
 
+/**
+ * Only the fields the card renders. Any offering (app, game, SaaS, service…)
+ * mapped to this shape can use the card, not just full legacy Products.
+ */
+export type ProductCardItem = Pick<
+  Product,
+  "name" | "image" | "status" | "description" | "href" | "button" | "playstore"
+>;
+
 type Props = {
-  app: Product;
+  app: ProductCardItem;
 };
 
 export default function ProductCard({ app }: Props) {
@@ -59,7 +68,7 @@ export default function ProductCard({ app }: Props) {
             href={app.playstore}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${app.name} on Google Play (opens in a new tab)`}
+            aria-label={`${app.name} on ${app.button} (opens in a new tab)`}
             className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-4 py-3 text-sm font-medium text-ink transition hover:bg-brand-hover xl:w-auto xl:text-base"
           >
             {app.button}

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { siteConfig } from "@/lib/siteConfig";
+import { siteConfig } from "@/config/site.config";
+import { navigationConfig } from "@/config/navigation.config";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
 
         <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
 
-          {siteConfig.navigation.map((item) => (
+          {navigationConfig.headerNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -53,10 +54,10 @@ export default function Header() {
         <div className="flex items-center gap-3">
 
           <Link
-            href={siteConfig.header.cta.href}
+            href={navigationConfig.headerCta.href}
             className="hidden rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover lg:inline-flex"
           >
-            {siteConfig.header.cta.label}
+            {navigationConfig.headerCta.label}
           </Link>
 
           <button
@@ -106,7 +107,7 @@ export default function Header() {
 
           <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col px-6 py-6 sm:px-8">
 
-            {siteConfig.navigation.map((item) => (
+            {navigationConfig.headerNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -118,11 +119,11 @@ export default function Header() {
             ))}
 
             <Link
-              href={siteConfig.header.cta.href}
+              href={navigationConfig.headerCta.href}
               onClick={closeMenu}
               className="mt-4 inline-flex items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover"
             >
-              {siteConfig.header.cta.label}
+              {navigationConfig.headerCta.label}
             </Link>
 
           </nav>

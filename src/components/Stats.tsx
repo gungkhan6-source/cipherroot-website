@@ -1,13 +1,11 @@
 import Section from "./ui/Section";
+import { homeContent, type HomeContent } from "@/content/home.content";
 
-const stats = [
-  { value: "3", label: "Active Products" },
-  { value: "27", label: "Technical Articles" },
-  { value: "1M+", label: "Future Downloads" },
-  { value: "∞", label: "Ideas Ahead" },
-];
+type Props = {
+  stats?: HomeContent["stats"];
+};
 
-export default function Stats() {
+export default function Stats({ stats = homeContent.stats }: Props) {
   return (
     <Section surface="1" spacing="compact">
 
