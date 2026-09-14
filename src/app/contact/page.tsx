@@ -6,9 +6,8 @@ import { featuresConfig } from "@/config/features.config";
 import { contactContent } from "@/content/contact.content";
 
 export const metadata = pageMetadata({
-  title: "Contact",
-  description:
-    "Get in touch with CipherRoot Software by email, GitHub or YouTube.",
+  title: contactContent.title,
+  description: contactContent.metaDescription,
   path: "/contact",
 });
 
@@ -55,10 +54,10 @@ export default function ContactPage() {
             href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub (opens in a new tab)"
+            aria-label={`${contactContent.directChannels.githubTitle} (opens in a new tab)`}
             className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
           >
-            github.com/gungkhan6-source
+            {contactContent.directChannels.githubLabel}
           </a>
         </div>
 
@@ -71,10 +70,10 @@ export default function ContactPage() {
             href={siteConfig.youtube}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="YouTube (opens in a new tab)"
+            aria-label={`${contactContent.directChannels.youtubeTitle} (opens in a new tab)`}
             className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
           >
-            @CipherRootSoftware
+            {contactContent.directChannels.youtubeLabel}
           </a>
         </div>
 

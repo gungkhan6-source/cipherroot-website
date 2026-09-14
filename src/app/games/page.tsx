@@ -3,11 +3,11 @@ import ProductCard from "@/components/ProductCard";
 import SectionTitle from "@/components/SectionTitle";
 import { games } from "@/data/products";
 import PageShell from "@/components/ui/PageShell";
+import { gamesPageContent } from "@/content/pages.content";
 
 export const metadata = pageMetadata({
-  title: "Indie Games",
-  description:
-    "Explore indie games currently in development at CipherRoot Software.",
+  title: gamesPageContent.metaTitle,
+  description: gamesPageContent.metaDescription,
   path: "/games",
 });
 
@@ -18,9 +18,9 @@ export default function GamesPage() {
 
         <SectionTitle
           as="h1"
-          badge="Games"
-          title="Indie Games"
-          description="Explore our indie games currently in development."
+          badge={gamesPageContent.badge}
+          title={gamesPageContent.title}
+          description={gamesPageContent.description}
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

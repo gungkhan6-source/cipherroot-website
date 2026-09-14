@@ -10,6 +10,11 @@ export const contentType = "image/png";
 
 export const alt = siteConfig.name;
 
+// Shown as a bare domain, without the "www." the site is served from.
+const displayDomain = new URL(siteConfig.url).host.replace(/^www\./, "");
+
+const { colors } = siteConfig.theme;
+
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -21,9 +26,9 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "96px",
-          backgroundColor: "#000000",
+          backgroundColor: colors.surface0,
           backgroundImage:
-            "radial-gradient(circle at 50% 0%, #1d4ed8 0%, transparent 55%), radial-gradient(ellipse at 50% 120%, #7c3aed 0%, transparent 60%)",
+            `radial-gradient(circle at 50% 0%, ${colors.brandHover} 0%, transparent 55%), radial-gradient(ellipse at 50% 120%, ${colors.accent} 0%, transparent 60%)`,
           fontFamily: "sans-serif",
         }}
       >
@@ -57,10 +62,10 @@ export default function OpengraphImage() {
             display: "flex",
             marginTop: 64,
             fontSize: 26,
-            color: "#60a5fa",
+            color: colors.brandLight,
           }}
         >
-          cipherrootsoftware.com
+          {displayDomain}
         </div>
       </div>
     ),

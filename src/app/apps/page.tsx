@@ -3,11 +3,11 @@ import ProductCard from "@/components/ProductCard";
 import SectionTitle from "@/components/SectionTitle";
 import { apps } from "@/data/products";
 import PageShell from "@/components/ui/PageShell";
+import { appsPageContent } from "@/content/pages.content";
 
 export const metadata = pageMetadata({
-  title: "Applications",
-  description:
-    "Explore CipherRoot Android applications, including Gunner DNS and NovaRec Studio.",
+  title: appsPageContent.metaTitle,
+  description: appsPageContent.metaDescription,
   path: "/apps",
 });
 
@@ -18,9 +18,9 @@ export default function AppsPage() {
 
         <SectionTitle
           as="h1"
-          badge="Products"
-          title="Applications"
-          description="Explore CipherRoot Android Applications."
+          badge={appsPageContent.badge}
+          title={appsPageContent.title}
+          description={appsPageContent.description}
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

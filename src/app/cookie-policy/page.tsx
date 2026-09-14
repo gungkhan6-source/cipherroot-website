@@ -3,9 +3,8 @@ import LegalPage from "@/components/LegalPage";
 import { cookiePolicyContent } from "@/content/legal.content";
 
 export const metadata = pageMetadata({
-  title: "Cookie Policy",
-  description:
-    "Which cookies may be used on cipherrootsoftware.com, what they do, and how to control them.",
+  title: cookiePolicyContent.title,
+  description: cookiePolicyContent.metaDescription,
   path: "/cookie-policy",
 });
 

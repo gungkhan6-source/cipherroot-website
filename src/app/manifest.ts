@@ -4,16 +4,16 @@ import { siteConfig } from "@/lib/siteConfig";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
-    short_name: "CipherRoot",
+    short_name: siteConfig.shortName,
     description: siteConfig.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#000000",
-    theme_color: "#2563eb",
+    background_color: siteConfig.theme.colors.surface0,
+    theme_color: siteConfig.theme.colors.brand,
 
     icons: [
       {
-        src: "/logo/favicon.png",
+        src: siteConfig.favicon,
         sizes: "180x180",
         type: "image/png",
         purpose: "any",

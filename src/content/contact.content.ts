@@ -1,5 +1,6 @@
 export interface ContactContent {
   title: string;
+  metaDescription: string;
   description: string;
   form: {
     title: string;
@@ -20,12 +21,16 @@ export interface ContactContent {
   directChannels: {
     emailTitle: string;
     githubTitle: string;
+    githubLabel: string;
     youtubeTitle: string;
+    youtubeLabel: string;
   };
 }
 
 export const contactContent: ContactContent = {
   title: "Contact",
+  metaDescription:
+    "Get in touch with CipherRoot Software by email, GitHub or YouTube.",
   description: "Feel free to contact CipherRoot Software.",
 
   form: {
@@ -48,6 +53,8 @@ export const contactContent: ContactContent = {
   directChannels: {
     emailTitle: "Email",
     githubTitle: "GitHub",
+    githubLabel: "github.com/gungkhan6-source",
     youtubeTitle: "YouTube",
+    youtubeLabel: "@CipherRootSoftware",
   },
 };

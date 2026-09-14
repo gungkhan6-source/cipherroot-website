@@ -1,3 +1,5 @@
+import { resolveFeatures } from "./packages.config";
+
 export interface FeaturesConfig {
   // İçerik ve Bölümler
   blog: boolean;
@@ -21,23 +23,10 @@ export interface FeaturesConfig {
   darkModeToggle: boolean;
 }
 
-export const featuresConfig: FeaturesConfig = {
-  // CipherRoot V1 varsayılan aktif özellikleri
-  blog: true,
-  services: true,
-  portfolio: false,
-  gallery: false,
-  faq: true,
-  testimonials: false,
-  stats: true,
-
-  contactForm: true,
+/**
+ * CipherRoot uses the Premium package. The newsletter module exists but has
+ * no backend yet, so it stays off for this site.
+ */
+export const featuresConfig: FeaturesConfig = resolveFeatures("premium", {
   newsletter: false,
-  whatsappChat: false,
-  googleMaps: false,
-  appointment: false,
-
-  aiAssistant: false,
-  multilingual: false,
-  darkModeToggle: false,
-};
+});

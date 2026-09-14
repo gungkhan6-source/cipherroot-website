@@ -8,6 +8,7 @@ export interface LegalSection {
 
 export interface LegalPageContent {
   title: string;
+  metaDescription: string;
   updated: string;
   intro: string;
   sections: LegalSection[];
@@ -25,6 +26,8 @@ export interface LegalPageContent {
  */
 export const privacyPolicyContent: LegalPageContent = {
   title: "Privacy Policy",
+  metaDescription:
+    "How CipherRoot Software collects, uses and protects information, including cookies, advertising and third-party services.",
   updated: "2026-07-28",
   intro:
     "This policy explains what information is collected when you visit cipherrootsoftware.com, how it is used, who it is shared with, and the control you have over it.",
@@ -152,6 +155,8 @@ export const privacyPolicyContent: LegalPageContent = {
  */
 export const termsOfServiceContent: LegalPageContent = {
   title: "Terms of Service",
+  metaDescription:
+    "The terms that apply when you use the CipherRoot Software website, applications and games.",
   updated: "2026-07-28",
   intro:
     "These terms apply to the CipherRoot Software website and to the applications, games and tools we publish. Please read them before using our services.",
@@ -249,6 +254,8 @@ export const termsOfServiceContent: LegalPageContent = {
  */
 export const cookiePolicyContent: LegalPageContent = {
   title: "Cookie Policy",
+  metaDescription:
+    "Which cookies may be used on cipherrootsoftware.com, what they do, and how to control them.",
   updated: "2026-07-28",
   intro:
     "This page explains which cookies may be used on cipherrootsoftware.com, what each type does, and how you can control them.",

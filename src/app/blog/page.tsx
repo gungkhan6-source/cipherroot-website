@@ -5,11 +5,11 @@ import PostCard from "@/components/PostCard";
 import { notFound } from "next/navigation";
 import { posts } from "@/data/posts";
 import { featuresConfig } from "@/config/features.config";
+import { blogPageContent } from "@/content/pages.content";
 
 export const metadata = pageMetadata({
-  title: "Blog",
-  description:
-    "News, development updates, Android applications, indie games and technology articles.",
+  title: blogPageContent.metaTitle,
+  description: blogPageContent.metaDescription,
   path: "/blog",
 });
 
@@ -23,9 +23,9 @@ export default function BlogPage() {
 
       <SectionTitle
         as="h1"
-        badge="Blog"
-        title="Insights & Development"
-        description="Technical articles, development diaries and engineering notes from CipherRoot Software."
+        badge={blogPageContent.badge}
+        title={blogPageContent.title}
+        description={blogPageContent.description}
       />
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

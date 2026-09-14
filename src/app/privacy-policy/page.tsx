@@ -3,9 +3,8 @@ import LegalPage from "@/components/LegalPage";
 import { privacyPolicyContent } from "@/content/legal.content";
 
 export const metadata = pageMetadata({
-  title: "Privacy Policy",
-  description:
-    "How CipherRoot Software collects, uses and protects information, including cookies, advertising and third-party services.",
+  title: privacyPolicyContent.title,
+  description: privacyPolicyContent.metaDescription,
   path: "/privacy-policy",
 });
 
