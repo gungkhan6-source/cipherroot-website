@@ -29,6 +29,7 @@ export const implementedFeatures: readonly FeatureName[] = [
   "whatsappChat",
   "googleMaps",
   "appointment",
+  "immersiveExperience",
 ];
 
 const starter: FeatureName[] = ["stats"];
@@ -52,6 +53,7 @@ const premium: FeatureName[] = [
   "portfolio",
   "newsletter",
   "multilingual",
+  "immersiveExperience",
 ];
 
 export const packages: Record<PackageName, readonly FeatureName[]> = {
@@ -75,6 +77,7 @@ const noFeatures: FeaturesConfig = {
   whatsappChat: false,
   googleMaps: false,
   appointment: false,
+  immersiveExperience: false,
   aiAssistant: false,
   multilingual: false,
   darkModeToggle: false,

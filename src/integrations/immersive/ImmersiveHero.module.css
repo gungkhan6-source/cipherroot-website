@@ -1,0 +1,160 @@
+/*
+ * Immersive hero layout. The section is the engine's scroll target: a tall
+ * wrapper whose sticky viewport stays pinned while the visual dissolves.
+ * The stage starts below the fixed header (h-20 = 5rem).
+ */
+
+.hero {
+  position: relative;
+  height: var(--immersive-scroll-length, 220svh);
+}
+
+.viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  inset: 5rem 0 0;
+}
+
+/* Copy column on the left; the engine frames the subject beside it. */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.25rem;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: min(36rem, 46vw);
+  padding: 5rem 1.5rem 0 clamp(1.5rem, 6vw, 6rem);
+}
+
+.title {
+  font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+  line-height: 1.08;
+}
+
+.description {
+  max-width: 32rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.action {
+  padding: 0.75rem 1.5rem;
+}
+
+/* Near-square screens: a slightly narrower column keeps the subject strong. */
+@media (min-aspect-ratio: 24/25) and (max-aspect-ratio: 4/3) {
+  .content {
+    max-width: min(34rem, 48vw);
+  }
+}
+
+/* Portrait, or narrow but not short: copy at the bottom, subject above. */
+@media (max-aspect-ratio: 19/20), (max-width: 760px) and (min-height: 501px) {
+  .content {
+    justify-content: flex-end;
+    max-width: 42rem;
+    padding: 0 1.5rem 3.5rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 7vw, 3.25rem);
+  }
+}
+
+/* Phones in portrait: the visual leads, so the copy is at its most compact. */
+@media (max-width: 480px) and (min-height: 501px) {
+  .content {
+    gap: 0.9rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .title {
+    font-size: clamp(1.75rem, 7.6vw, 2.25rem);
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .actions {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .action {
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+}
+
+/* Short landscape (phones on their side): compact column on the left. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .content {
+    gap: 0.6rem;
+    max-width: min(30rem, 56vw);
+    padding: 5rem 1rem 0 clamp(1.25rem, 5vw, 3rem);
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 7.5vh, 2.25rem);
+  }
+
+  .description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .action {
+    padding: 0.55rem 1.1rem;
+  }
+}
+
+/*
+ * No motion, no WebGL (static hero, engine not downloaded), an engine
+ * fallback or a failed load: no scroll range is needed, so the hero becomes a
+ * regular full-height section.
+ */
+.hero[data-immersive-tier="fallback"],
+.hero[data-immersive-status="error"] {
+  height: auto;
+}
+
+.hero[data-immersive-tier="fallback"] .viewport,
+.hero[data-immersive-status="error"] .viewport {
+  position: relative;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+  }
+
+  .viewport {
+    position: relative;
+    height: auto;
+  }
+}
