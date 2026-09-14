@@ -78,6 +78,11 @@ export const offerings: CatalogItem[] = [
     image: "/images/pixel-football.webp",
     featured: false,
     href: "/games/retro-pixel-football",
+    seo: {
+      description:
+        "Inspired by legendary 90’s football games. Fast gameplay, pixel graphics and arcade action.",
+      image: "/opengraph-image",
+    },
     developmentVideo: {
       title: "Retro Pixel Football Game Development Update | Devlog # 1",
       url: "https://www.youtube.com/watch?v=i5c_nbnqtw4",

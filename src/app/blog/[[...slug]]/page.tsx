@@ -2,19 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageShell from "@/components/ui/PageShell";
+import SectionTitle from "@/components/SectionTitle";
+import PostCard from "@/components/PostCard";
 import { posts, getPost } from "@/data/posts";
 import { parseMarkdown, formatDate } from "@/lib/markdown";
 import { pageMetadata } from "@/lib/metadata";
-import PageShell from "@/components/ui/PageShell";
 import { articleJsonLd } from "@/lib/jsonLd";
 import { moduleVisibility } from "@/lib/modules";
+import { blogPageContent } from "@/content/pages.content";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug?: string[] }>;
 };
 
-// Only the slugs returned by generateStaticParams exist.
-// Anything else must be a real 404, not a soft 404.
+/**
+ * /blog (listing) and /blog/[slug] (post) in one optional catch-all route,
+ * like /services. While the blog is hidden or has no posts no page is
+ * generated, so both URLs are a real 404 rather than a soft 404.
+ */
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -22,13 +28,25 @@ export function generateStaticParams() {
     return [];
   }
 
-  return posts.map((post) => ({ slug: post.slug }));
+  return [{ slug: [] }, ...posts.map((post) => ({ slug: [post.slug] }))];
+}
+
+function findPost(slug?: string[]) {
+  return slug?.length === 1 ? getPost(slug[0]) : undefined;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const post = getPost(slug);
+  if (!slug || slug.length === 0) {
+    return pageMetadata({
+      title: blogPageContent.metaTitle,
+      description: blogPageContent.metaDescription,
+      path: "/blog",
+    });
+  }
+
+  const post = findPost(slug);
 
   if (!post) {
     return {};
@@ -42,10 +60,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPage({ params }: Props) {
   const { slug } = await params;
 
-  const post = getPost(slug);
+  if (!moduleVisibility.blog) {
+    notFound();
+  }
+
+  if (!slug || slug.length === 0) {
+    return (
+      <PageShell>
+
+        <SectionTitle
+          as="h1"
+          badge={blogPageContent.badge}
+          title={blogPageContent.title}
+          description={blogPageContent.description}
+        />
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <PostCard
+              key={post.slug}
+              post={post}
+            />
+          ))}
+        </div>
+
+      </PageShell>
+    );
+  }
+
+  const post = findPost(slug);
 
   if (!post) {
     notFound();

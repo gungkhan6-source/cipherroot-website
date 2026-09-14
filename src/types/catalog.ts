@@ -34,6 +34,15 @@ export type CatalogCategory =
   | "service"
   | "portfolio";
 
+/**
+ * Optional search/social overrides for an offering's detail page. By default
+ * the page uses longDescription and image.
+ */
+export interface CatalogSeo {
+  description?: string;
+  image?: string;
+}
+
 /** A development update / devlog video published for an offering. */
 export interface DevelopmentVideo {
   title: string;
@@ -50,6 +59,7 @@ export interface BaseCatalogItem {
   image: string;
   screenshots?: string[];
   developmentVideo?: DevelopmentVideo;
+  seo?: CatalogSeo;
   category: CatalogCategory;
   featured?: boolean;
   href: string;
