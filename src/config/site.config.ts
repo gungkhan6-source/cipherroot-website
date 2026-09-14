@@ -46,11 +46,14 @@ export interface SiteConfig {
   // 2. İletişim Bilgileri
   email: string;
   phone?: string;
+  // International format, digits only (e.g. 905xxxxxxxxx) — used for wa.me links
   whatsapp?: string;
   address?: {
     street?: string;
+    postalCode?: string;
     city?: string;
     country?: string;
+    // Explicit Maps link; when absent, a search link is built from the address
     googleMapsUrl?: string;
   };
 
@@ -121,6 +124,15 @@ export const siteConfig: SiteConfig = {
   favicon: "/logo/favicon.png",
 
   email: "gungkhan6@gmail.com",
+  // Left empty in the public repository on purpose. Fill in per site; an
+  // empty value keeps the matching WhatsApp / Maps link from rendering.
+  phone: "",
+  whatsapp: "",
+  address: {
+    street: "",
+    postalCode: "",
+    city: "",
+  },
 
   github: "https://github.com/gungkhan6-source",
   youtube: "https://www.youtube.com/@CipherRootSoftware",

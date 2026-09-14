@@ -24,6 +24,9 @@ export interface ContactContent {
     githubLabel: string;
     youtubeTitle: string;
     youtubeLabel: string;
+    whatsappTitle: string;
+    whatsappLabel: string;
+    addressTitle: string;
   };
 }
 
@@ -56,5 +59,8 @@ export const contactContent: ContactContent = {
     githubLabel: "github.com/gungkhan6-source",
     youtubeTitle: "YouTube",
     youtubeLabel: "@CipherRootSoftware",
+    whatsappTitle: "WhatsApp",
+    whatsappLabel: "Chat on WhatsApp",
+    addressTitle: "Address",
   },
 };

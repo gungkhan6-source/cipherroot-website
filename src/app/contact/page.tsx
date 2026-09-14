@@ -4,6 +4,8 @@ import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/lib/siteConfig";
 import { featuresConfig } from "@/config/features.config";
 import { contactContent } from "@/content/contact.content";
+import { formattedAddress, mapsUrl, whatsappUrl } from "@/lib/contact";
+import { moduleVisibility } from "@/lib/modules";
 
 export const metadata = pageMetadata({
   title: contactContent.title,
@@ -76,6 +78,42 @@ export default function ContactPage() {
             {contactContent.directChannels.youtubeLabel}
           </a>
         </div>
+
+        {moduleVisibility.whatsapp && (
+          <div>
+            <h2 className="text-xl font-semibold">
+              {contactContent.directChannels.whatsappTitle}
+            </h2>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${contactContent.directChannels.whatsappLabel} (opens in a new tab)`}
+              className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
+            >
+              {contactContent.directChannels.whatsappLabel}
+            </a>
+          </div>
+        )}
+
+        {moduleVisibility.maps && (
+          <div>
+            <h2 className="text-xl font-semibold">
+              {contactContent.directChannels.addressTitle}
+            </h2>
+
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${formattedAddress ?? contactContent.directChannels.addressTitle} on Google Maps (opens in a new tab)`}
+              className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
+            >
+              {formattedAddress ?? contactContent.directChannels.addressTitle}
+            </a>
+          </div>
+        )}
 
       </div>
 

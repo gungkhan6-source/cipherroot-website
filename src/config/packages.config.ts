@@ -22,6 +22,8 @@ export const implementedFeatures: readonly FeatureName[] = [
   "stats",
   "contactForm",
   "newsletter",
+  "whatsappChat",
+  "googleMaps",
 ];
 
 const starter: FeatureName[] = ["stats"];

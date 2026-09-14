@@ -2,6 +2,7 @@ import { featuresConfig } from "@/config/features.config";
 import { homeContent } from "@/content/home.content";
 import { apps, games, products, type ProductKind } from "@/data/products";
 import { posts } from "@/data/posts";
+import { mapsUrl, whatsappUrl } from "@/lib/contact";
 
 /**
  * A module is shown only when its feature is enabled AND it has real content.
@@ -15,6 +16,8 @@ export const moduleVisibility = {
   games: featuresConfig.games && games.length > 0,
   blog: featuresConfig.blog && posts.length > 0,
   stats: featuresConfig.stats && homeContent.stats.length > 0,
+  whatsapp: featuresConfig.whatsappChat && whatsappUrl !== undefined,
+  maps: featuresConfig.googleMaps && mapsUrl !== undefined,
 };
 
 const moduleForKind: Record<ProductKind, "apps" | "games"> = {

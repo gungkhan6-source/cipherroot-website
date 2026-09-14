@@ -27,8 +27,10 @@ export interface FeaturesConfig {
 
 /**
  * CipherRoot uses the Premium package. The newsletter module exists but has
- * no backend yet, so it stays off for this site.
+ * no backend yet, and the Maps link is not shown on this site, so both stay
+ * off. WhatsApp is not part of any package and is off by default.
  */
 export const featuresConfig: FeaturesConfig = resolveFeatures("premium", {
   newsletter: false,
+  googleMaps: false,
 });
