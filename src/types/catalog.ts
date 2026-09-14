@@ -34,6 +34,12 @@ export type CatalogCategory =
   | "service"
   | "portfolio";
 
+/** A development update / devlog video published for an offering. */
+export interface DevelopmentVideo {
+  title: string;
+  url: string;
+}
+
 export interface BaseCatalogItem {
   id: string;
   slug: string;
@@ -43,6 +49,7 @@ export interface BaseCatalogItem {
   longDescription: string;
   image: string;
   screenshots?: string[];
+  developmentVideo?: DevelopmentVideo;
   category: CatalogCategory;
   featured?: boolean;
   href: string;

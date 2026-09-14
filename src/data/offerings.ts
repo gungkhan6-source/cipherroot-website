@@ -73,6 +73,10 @@ export const offerings: CatalogItem[] = [
     image: "/images/pixel-football.webp",
     featured: false,
     href: "/games/retro-pixel-football",
+    developmentVideo: {
+      title: "Retro Pixel Football Game Development Update | Devlog # 1",
+      url: "https://www.youtube.com/watch?v=i5c_nbnqtw4",
+    },
     releases: [
       {
         platform: "android",

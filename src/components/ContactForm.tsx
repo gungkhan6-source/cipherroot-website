@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/siteConfig";
+import { contactContent } from "@/content/contact.content";
 
 const fieldClass =
   "mt-2 w-full rounded-xl border border-line bg-card px-4 py-3 text-ink placeholder:text-zinc-500 disabled:cursor-not-allowed disabled:opacity-60";
@@ -6,18 +7,19 @@ const fieldClass =
 const labelClass = "block text-sm font-medium text-ink";
 
 export default function ContactForm() {
+  const form = contactContent.form;
+
   return (
     <form
       aria-describedby="contact-form-status"
       className="rounded-3xl border border-line bg-card p-6 sm:p-8"
     >
       <h2 className="text-xl font-semibold sm:text-2xl">
-        Send a message
+        {form.title}
       </h2>
 
       <p id="contact-form-status" className="mt-3 text-sm text-ink-muted">
-        Message sending is coming soon. Until then, please reach us
-        directly at{" "}
+        {form.notice}{" "}
         <a
           href={`mailto:${siteConfig.email}`}
           className="text-brand-light transition hover:text-brand-mid"
@@ -31,7 +33,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="contact-name" className={labelClass}>
-            Name
+            {form.nameLabel}
           </label>
 
           <input
@@ -41,19 +43,19 @@ export default function ContactForm() {
             autoComplete="name"
             required
             disabled
-            placeholder="Your name"
+            placeholder={form.namePlaceholder}
             aria-describedby="contact-name-hint"
             className={fieldClass}
           />
 
           <p id="contact-name-hint" className="mt-2 text-xs text-zinc-500">
-            How we should address you.
+            {form.nameHint}
           </p>
         </div>
 
         <div>
           <label htmlFor="contact-email" className={labelClass}>
-            Email
+            {form.emailLabel}
           </label>
 
           <input
@@ -63,13 +65,13 @@ export default function ContactForm() {
             autoComplete="email"
             required
             disabled
-            placeholder="you@example.com"
+            placeholder={form.emailPlaceholder}
             aria-describedby="contact-email-hint"
             className={fieldClass}
           />
 
           <p id="contact-email-hint" className="mt-2 text-xs text-zinc-500">
-            We will only use this to reply to you.
+            {form.emailHint}
           </p>
         </div>
 
@@ -77,7 +79,7 @@ export default function ContactForm() {
 
       <div className="mt-6">
         <label htmlFor="contact-subject" className={labelClass}>
-          Subject
+          {form.subjectLabel}
         </label>
 
         <input
@@ -87,14 +89,14 @@ export default function ContactForm() {
           autoComplete="off"
           required
           disabled
-          placeholder="What is this about?"
+          placeholder={form.subjectPlaceholder}
           className={fieldClass}
         />
       </div>
 
       <div className="mt-6">
         <label htmlFor="contact-message" className={labelClass}>
-          Message
+          {form.messageLabel}
         </label>
 
         <textarea
@@ -103,13 +105,13 @@ export default function ContactForm() {
           rows={6}
           required
           disabled
-          placeholder="Tell us a little about your idea or question."
+          placeholder={form.messagePlaceholder}
           aria-describedby="contact-message-hint"
           className={fieldClass}
         />
 
         <p id="contact-message-hint" className="mt-2 text-xs text-zinc-500">
-          Required. Please include as much detail as you can.
+          {form.messageHint}
         </p>
       </div>
 
@@ -120,7 +122,7 @@ export default function ContactForm() {
         aria-describedby="contact-form-status"
         className="mt-8 inline-flex w-full cursor-not-allowed items-center justify-center rounded-xl bg-zinc-800 px-6 py-3 font-semibold text-zinc-300 sm:w-auto"
       >
-        Coming Soon
+        {form.submitLabel}
       </button>
     </form>
   );

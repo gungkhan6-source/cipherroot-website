@@ -7,6 +7,7 @@ import { parseMarkdown, formatDate } from "@/lib/markdown";
 import { pageMetadata } from "@/lib/metadata";
 import PageShell from "@/components/ui/PageShell";
 import { articleJsonLd } from "@/lib/jsonLd";
+import { featuresConfig } from "@/config/features.config";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -17,6 +18,10 @@ type Props = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
+  if (!featuresConfig.blog) {
+    return [];
+  }
+
   return posts.map((post) => ({ slug: post.slug }));
 }
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homeContent, type HomeContent } from "@/content/home.content";
+import { isRouteEnabled } from "@/config/navigation.config";
 
 type Props = {
   content?: HomeContent["hero"];
@@ -44,12 +45,14 @@ export default function Hero({ content = homeContent.hero }: Props) {
             {content.primaryCta.label}
           </Link>
 
-          <Link
-            href={content.secondaryCta.href}
-            className="inline-flex w-full items-center justify-center rounded-xl border border-line-strong bg-white/5 px-8 py-4 sm:w-auto font-semibold text-ink backdrop-blur-sm transition-all duration-300 hover:border-brand hover:bg-white/10"
-          >
-            {content.secondaryCta.label}
-          </Link>
+          {isRouteEnabled(content.secondaryCta.href) && (
+            <Link
+              href={content.secondaryCta.href}
+              className="inline-flex w-full items-center justify-center rounded-xl border border-line-strong bg-white/5 px-8 py-4 sm:w-auto font-semibold text-ink backdrop-blur-sm transition-all duration-300 hover:border-brand hover:bg-white/10"
+            >
+              {content.secondaryCta.label}
+            </Link>
+          )}
 
         </div>
 

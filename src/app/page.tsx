@@ -5,6 +5,7 @@ import Stats from "../components/Stats";
 import Products from "../components/Products";
 import WhyCipherRoot from "../components/WhyCipherRoot";
 import LatestArticles from "../components/LatestArticles";
+import { featuresConfig } from "@/config/features.config";
 
 export const metadata: Metadata = {
   alternates: {
@@ -17,10 +18,10 @@ export default function Home() {
   return (
     <main id="main-content">
       <Hero />
-      <Stats />
+      {featuresConfig.stats && <Stats />}
       <Products />
       <WhyCipherRoot />
-      <LatestArticles />
+      {featuresConfig.blog && <LatestArticles />}
       <DownloadSection />
     </main>
   );

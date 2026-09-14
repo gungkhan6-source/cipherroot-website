@@ -2,6 +2,8 @@ import { pageMetadata } from "@/lib/metadata";
 import PageShell from "@/components/ui/PageShell";
 import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/lib/siteConfig";
+import { featuresConfig } from "@/config/features.config";
+import { contactContent } from "@/content/contact.content";
 
 export const metadata = pageMetadata({
   title: "Contact",
@@ -16,22 +18,24 @@ export default function ContactPage() {
     <PageShell width="4xl">
 
       <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-        Contact
+        {contactContent.title}
       </h1>
 
       <p className="mt-8 text-ink-muted">
-        Feel free to contact CipherRoot Software.
+        {contactContent.description}
       </p>
 
-      <div className="mt-12 sm:mt-16">
-        <ContactForm />
-      </div>
+      {featuresConfig.contactForm && (
+        <div className="mt-12 sm:mt-16">
+          <ContactForm />
+        </div>
+      )}
 
       <div className="mt-12 space-y-8 sm:mt-16">
 
         <div>
           <h2 className="text-xl font-semibold">
-            Email
+            {contactContent.directChannels.emailTitle}
           </h2>
 
           <a
@@ -44,7 +48,7 @@ export default function ContactPage() {
 
         <div>
           <h2 className="text-xl font-semibold">
-            GitHub
+            {contactContent.directChannels.githubTitle}
           </h2>
 
           <a
@@ -60,7 +64,7 @@ export default function ContactPage() {
 
         <div>
           <h2 className="text-xl font-semibold">
-            YouTube
+            {contactContent.directChannels.youtubeTitle}
           </h2>
 
           <a

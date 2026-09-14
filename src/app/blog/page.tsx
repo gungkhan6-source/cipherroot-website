@@ -2,7 +2,9 @@ import { pageMetadata } from "@/lib/metadata";
 import PageShell from "@/components/ui/PageShell";
 import SectionTitle from "@/components/SectionTitle";
 import PostCard from "@/components/PostCard";
+import { notFound } from "next/navigation";
 import { posts } from "@/data/posts";
+import { featuresConfig } from "@/config/features.config";
 
 export const metadata = pageMetadata({
   title: "Blog",
@@ -12,6 +14,10 @@ export const metadata = pageMetadata({
 });
 
 export default function BlogPage() {
+  if (!featuresConfig.blog) {
+    notFound();
+  }
+
   return (
     <PageShell>
 

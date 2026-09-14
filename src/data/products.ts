@@ -1,5 +1,5 @@
 import { digitalProducts } from "./offerings";
-import type { DigitalProductItem } from "@/types/catalog";
+import type { DevelopmentVideo, DigitalProductItem } from "@/types/catalog";
 
 export type ProductKind = "app" | "game";
 
@@ -17,6 +17,7 @@ export type Product = {
   href: string;
   button: string;
   playstore?: string;
+  developmentVideo?: DevelopmentVideo;
 };
 
 /**
@@ -41,6 +42,7 @@ function toLegacyProduct(item: DigitalProductItem): Product {
     button:
       primaryRelease?.ctaLabel ?? (isAvailable ? "Download" : "Coming Soon"),
     playstore: primaryRelease?.storeUrl,
+    developmentVideo: item.developmentVideo,
   };
 }
 

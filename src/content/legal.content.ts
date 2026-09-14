@@ -13,6 +13,16 @@ export interface LegalPageContent {
   sections: LegalSection[];
 }
 
+/**
+ * NOTE FOR MAINTAINERS
+ * This document describes the site as it is actually operated today:
+ * a static website with no accounts, no server-side database and no
+ * analytics installed. The advertising and analytics sections are written
+ * to remain accurate once those services are enabled. If a service is
+ * removed or added, update the matching section and the "Last updated" date.
+ * Have the final text reviewed by a qualified professional for your
+ * jurisdiction before publication.
+ */
 export const privacyPolicyContent: LegalPageContent = {
   title: "Privacy Policy",
   updated: "2026-07-28",
@@ -134,6 +144,12 @@ export const privacyPolicyContent: LegalPageContent = {
   ],
 };
 
+/**
+ * NOTE FOR MAINTAINERS
+ * Section 9 (Governing Law) must name the jurisdiction in which CipherRoot
+ * Software actually operates before this page goes live. Have the final text
+ * reviewed by a qualified professional.
+ */
 export const termsOfServiceContent: LegalPageContent = {
   title: "Terms of Service",
   updated: "2026-07-28",
@@ -225,6 +241,12 @@ export const termsOfServiceContent: LegalPageContent = {
   ],
 };
 
+/**
+ * NOTE FOR MAINTAINERS
+ * This page reflects the current state: the site sets no first-party cookies.
+ * When AdSense or analytics is enabled, move the matching section from
+ * conditional wording to present tense and update the "Last updated" date.
+ */
 export const cookiePolicyContent: LegalPageContent = {
   title: "Cookie Policy",
   updated: "2026-07-28",

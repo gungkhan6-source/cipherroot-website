@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/metadata";
 import PageShell from "@/components/ui/PageShell";
+import { aboutContent } from "@/content/about.content";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -14,24 +15,17 @@ export default function AboutPage() {
     <PageShell width="5xl">
 
       <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-        About CipherRoot Software
+        {aboutContent.title}
       </h1>
 
-      <p className="mt-10 text-lg leading-9 text-ink-muted">
-        CipherRoot Software is an independent software studio focused on
-        privacy, security and creative technologies.
-      </p>
-
-      <p className="mt-6 text-lg leading-9 text-ink-muted">
-        We develop Android applications, indie games and productivity
-        software with a strong focus on performance, simplicity and user
-        privacy.
-      </p>
-
-      <p className="mt-6 text-lg leading-9 text-ink-muted">
-        Every project is designed to provide practical solutions while
-        maintaining clean design, reliability and long-term support.
-      </p>
+      {aboutContent.paragraphs.map((paragraph, index) => (
+        <p
+          key={paragraph}
+          className={`${index === 0 ? "mt-10" : "mt-6"} text-lg leading-9 text-ink-muted`}
+        >
+          {paragraph}
+        </p>
+      ))}
 
     </PageShell>
   );

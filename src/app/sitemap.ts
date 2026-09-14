@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/siteConfig";
 import { products } from "@/data/products";
 import { posts } from "@/data/posts";
+import { featuresConfig } from "@/config/features.config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -26,17 +27,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
 
-    {
-      url: `${siteConfig.url}/blog`,
-      priority: 0.8,
-    },
+    // Blog listing and posts exist only while the blog feature is on.
+    ...(featuresConfig.blog
+      ? [
+          {
+            url: `${siteConfig.url}/blog`,
+            priority: 0.8,
+          },
 
-    // Blog posts are generated from the single source of truth.
-    ...posts.map((post) => ({
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      lastModified: post.updated ?? post.date,
-      priority: 0.6,
-    })),
+          // Blog posts are generated from the single source of truth.
+          ...posts.map((post) => ({
+            url: `${siteConfig.url}/blog/${post.slug}`,
+            lastModified: post.updated ?? post.date,
+            priority: 0.6,
+          })),
+        ]
+      : []),
 
     {
       url: `${siteConfig.url}/about`,
