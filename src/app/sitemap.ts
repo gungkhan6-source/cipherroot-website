@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/siteConfig";
 import { posts } from "@/data/posts";
 import { moduleVisibility, visibleProducts } from "@/lib/modules";
-import { services } from "@/data/offerings";
+import { portfolioItems, services } from "@/data/offerings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -45,6 +45,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
           ...services.map((service) => ({
             url: `${siteConfig.url}${service.href}`,
+            priority: 0.8,
+          })),
+        ]
+      : []),
+
+    // Portfolio listing and project pages exist only while Portfolio is visible.
+    ...(moduleVisibility.portfolio
+      ? [
+          {
+            url: `${siteConfig.url}/portfolio`,
+            priority: 0.9,
+          },
+
+          ...portfolioItems.map((project) => ({
+            url: `${siteConfig.url}${project.href}`,
             priority: 0.8,
           })),
         ]

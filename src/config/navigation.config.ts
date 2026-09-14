@@ -9,6 +9,7 @@ const featureRoutes: Record<string, boolean> = {
   "/apps": moduleVisibility.apps,
   "/games": moduleVisibility.games,
   "/services": moduleVisibility.services,
+  "/portfolio": moduleVisibility.portfolio,
   "/blog": moduleVisibility.blog,
 };
 

@@ -32,6 +32,14 @@ export const servicesPageContent: ListingPageContent = {
   description: "Explore the services we offer.",
 };
 
+export const portfolioPageContent: ListingPageContent = {
+  metaTitle: "Portfolio",
+  metaDescription: "Selected projects by CipherRoot Software.",
+  badge: "Portfolio",
+  title: "Portfolio",
+  description: "A selection of projects we have worked on.",
+};
+
 export const blogPageContent: ListingPageContent = {
   metaTitle: "Blog",
   metaDescription:

@@ -2,7 +2,7 @@ import { featuresConfig } from "@/config/features.config";
 import { homeContent } from "@/content/home.content";
 import { apps, games, products, type ProductKind } from "@/data/products";
 import { posts } from "@/data/posts";
-import { services } from "@/data/offerings";
+import { portfolioItems, services } from "@/data/offerings";
 import { faqItems } from "@/data/faq";
 import { testimonialItems } from "@/data/testimonials";
 import { galleryItems } from "@/data/gallery";
@@ -19,6 +19,7 @@ export const moduleVisibility = {
   apps: featuresConfig.apps && apps.length > 0,
   games: featuresConfig.games && games.length > 0,
   services: featuresConfig.services && services.length > 0,
+  portfolio: featuresConfig.portfolio && portfolioItems.length > 0,
   blog: featuresConfig.blog && posts.length > 0,
   stats: featuresConfig.stats && homeContent.stats.length > 0,
   faq: featuresConfig.faq && faqItems.length > 0,

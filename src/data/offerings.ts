@@ -1,6 +1,7 @@
 import type {
   CatalogItem,
   DigitalProductItem,
+  PortfolioItem,
   ServiceItem,
 } from "@/types/catalog";
 
@@ -196,4 +197,11 @@ export const digitalProducts = offerings.filter(
 // Services module stays hidden on this site.
 export const services = offerings.filter(
   (item): item is ServiceItem => item.kind === "service",
+);
+
+// Portfolio projects are catalog items with kind "portfolio" — separate from
+// products, which are never listed here. CipherRoot has none, so the Portfolio
+// module stays hidden on this site.
+export const portfolioItems = offerings.filter(
+  (item): item is PortfolioItem => item.kind === "portfolio",
 );

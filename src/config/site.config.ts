@@ -183,6 +183,7 @@ export const siteConfig: SiteConfig = {
     { title: "Apps", href: "/apps" },
     { title: "Games", href: "/games" },
     { title: "Services", href: "/services" },
+    { title: "Portfolio", href: "/portfolio" },
     { title: "Blog", href: "/blog" },
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
@@ -210,6 +211,7 @@ export const siteConfig: SiteConfig = {
       { label: "Apps", href: "/apps" },
       { label: "Games", href: "/games" },
       { label: "Services", href: "/services" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "Blog", href: "/blog" },
     ],
 

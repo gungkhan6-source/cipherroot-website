@@ -77,6 +77,7 @@ export interface PortfolioItem extends BaseCatalogItem {
   client?: string;
   completionDate?: string;
   projectUrl?: string;
+  repositoryUrl?: string;
   tags?: string[];
 }
 

@@ -6,6 +6,7 @@ import Products from "../components/Products";
 import WhyCipherRoot from "../components/WhyCipherRoot";
 import LatestArticles from "../components/LatestArticles";
 import ServicesSection from "../components/ServicesSection";
+import PortfolioSection from "../components/PortfolioSection";
 import GallerySection from "../components/GallerySection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import FaqSection from "../components/FaqSection";
@@ -25,6 +26,7 @@ export default function Home() {
       {moduleVisibility.stats && <Stats />}
       {moduleVisibility.services && <ServicesSection />}
       {visibleProducts.length > 0 && <Products />}
+      {moduleVisibility.portfolio && <PortfolioSection />}
       <WhyCipherRoot />
       {moduleVisibility.gallery && <GallerySection />}
       {moduleVisibility.testimonials && <TestimonialsSection />}
