@@ -24,6 +24,14 @@ export const gamesPageContent: ListingPageContent = {
   description: "Explore our indie games currently in development.",
 };
 
+export const servicesPageContent: ListingPageContent = {
+  metaTitle: "Services",
+  metaDescription: "Services offered by CipherRoot Software.",
+  badge: "Services",
+  title: "Services",
+  description: "Explore the services we offer.",
+};
+
 export const blogPageContent: ListingPageContent = {
   metaTitle: "Blog",
   metaDescription:

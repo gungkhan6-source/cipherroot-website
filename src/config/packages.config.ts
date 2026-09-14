@@ -19,6 +19,7 @@ export const implementedFeatures: readonly FeatureName[] = [
   "blog",
   "apps",
   "games",
+  "services",
   "stats",
   "contactForm",
   "newsletter",

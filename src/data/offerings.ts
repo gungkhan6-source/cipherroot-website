@@ -1,4 +1,8 @@
-import type { CatalogItem, DigitalProductItem } from "@/types/catalog";
+import type {
+  CatalogItem,
+  DigitalProductItem,
+  ServiceItem,
+} from "@/types/catalog";
 
 export const offerings: CatalogItem[] = [
   {
@@ -186,4 +190,10 @@ export const offerings: CatalogItem[] = [
 
 export const digitalProducts = offerings.filter(
   (item): item is DigitalProductItem => item.kind === "product",
+);
+
+// Services are catalog items with kind "service". CipherRoot lists none, so the
+// Services module stays hidden on this site.
+export const services = offerings.filter(
+  (item): item is ServiceItem => item.kind === "service",
 );

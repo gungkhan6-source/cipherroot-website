@@ -182,6 +182,7 @@ export const siteConfig: SiteConfig = {
   navigation: [
     { title: "Apps", href: "/apps" },
     { title: "Games", href: "/games" },
+    { title: "Services", href: "/services" },
     { title: "Blog", href: "/blog" },
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
@@ -208,6 +209,7 @@ export const siteConfig: SiteConfig = {
     resources: [
       { label: "Apps", href: "/apps" },
       { label: "Games", href: "/games" },
+      { label: "Services", href: "/services" },
       { label: "Blog", href: "/blog" },
     ],
 

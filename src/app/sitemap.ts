@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/siteConfig";
 import { posts } from "@/data/posts";
 import { moduleVisibility, visibleProducts } from "@/lib/modules";
+import { services } from "@/data/offerings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -33,6 +34,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}${product.href}`,
       priority: 0.8,
     })),
+
+    // Services listing and detail pages exist only while Services is visible.
+    ...(moduleVisibility.services
+      ? [
+          {
+            url: `${siteConfig.url}/services`,
+            priority: 0.9,
+          },
+
+          ...services.map((service) => ({
+            url: `${siteConfig.url}${service.href}`,
+            priority: 0.8,
+          })),
+        ]
+      : []),
 
     // Blog listing and posts exist only while the blog module is visible.
     ...(moduleVisibility.blog

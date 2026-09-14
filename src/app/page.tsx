@@ -5,6 +5,7 @@ import Stats from "../components/Stats";
 import Products from "../components/Products";
 import WhyCipherRoot from "../components/WhyCipherRoot";
 import LatestArticles from "../components/LatestArticles";
+import ServicesSection from "../components/ServicesSection";
 import { moduleVisibility, visibleProducts } from "@/lib/modules";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function Home() {
     <main id="main-content">
       <Hero />
       {moduleVisibility.stats && <Stats />}
+      {moduleVisibility.services && <ServicesSection />}
       {visibleProducts.length > 0 && <Products />}
       <WhyCipherRoot />
       {moduleVisibility.blog && <LatestArticles />}

@@ -2,6 +2,7 @@ import { featuresConfig } from "@/config/features.config";
 import { homeContent } from "@/content/home.content";
 import { apps, games, products, type ProductKind } from "@/data/products";
 import { posts } from "@/data/posts";
+import { services } from "@/data/offerings";
 import { mapsUrl, whatsappUrl } from "@/lib/contact";
 
 /**
@@ -14,6 +15,7 @@ import { mapsUrl, whatsappUrl } from "@/lib/contact";
 export const moduleVisibility = {
   apps: featuresConfig.apps && apps.length > 0,
   games: featuresConfig.games && games.length > 0,
+  services: featuresConfig.services && services.length > 0,
   blog: featuresConfig.blog && posts.length > 0,
   stats: featuresConfig.stats && homeContent.stats.length > 0,
   whatsapp: featuresConfig.whatsappChat && whatsappUrl !== undefined,

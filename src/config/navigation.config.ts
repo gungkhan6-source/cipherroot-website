@@ -8,6 +8,7 @@ import { moduleVisibility } from "@/lib/modules";
 const featureRoutes: Record<string, boolean> = {
   "/apps": moduleVisibility.apps,
   "/games": moduleVisibility.games,
+  "/services": moduleVisibility.services,
   "/blog": moduleVisibility.blog,
 };
 
