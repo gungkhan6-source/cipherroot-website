@@ -1,3 +1,11 @@
+import { posts } from "@/data/posts";
+import { digitalProducts } from "@/data/offerings";
+
+// Products with at least one released platform — not "coming soon" ones.
+const activeProductCount = digitalProducts.filter((product) =>
+  product.releases.some((release) => release.status === "released"),
+).length;
+
 export interface HomeContent {
   hero: {
     badge: string;
@@ -60,10 +68,10 @@ export const homeContent: HomeContent = {
   },
 
   stats: [
-    { value: "3", label: "Active Products" },
-    { value: "27", label: "Technical Articles" },
-    { value: "1M+", label: "Future Downloads" },
-    { value: "∞", label: "Ideas Ahead" },
+    { value: String(activeProductCount), label: "Active Products" },
+    { value: String(posts.length), label: "Technical Articles" },
+    { value: "Android", label: "Live on Google Play" },
+    { value: "Web & PC", label: "In Development" },
   ],
 
   offerings: {
@@ -111,6 +119,6 @@ export const homeContent: HomeContent = {
     badge: "Download",
     title: "Download Our Products",
     description:
-      "Access the latest CipherRoot Software applications directly from Google Play.",
+      "Released apps are available on Google Play. Products still in development are marked Coming Soon.",
   },
 };

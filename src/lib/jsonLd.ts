@@ -1,10 +1,12 @@
 import { siteConfig } from "./siteConfig";
 import type { Product } from "@/data/products";
 import type { Post } from "@/data/posts";
+import { digitalProducts } from "@/data/offerings";
+import type { PlatformType } from "@/types/catalog";
 
 /**
  * Structured data generators.
- * Everything is derived from siteConfig and products.ts so schemas
+ * Everything is derived from siteConfig and the catalog data so schemas
  * stay correct when the underlying data changes.
  */
 
@@ -22,7 +24,43 @@ export function organizationJsonLd() {
   };
 }
 
+// Platforms that are an operating system. Web releases have none, so they
+// contribute nothing to `operatingSystem`.
+const operatingSystemName: Partial<Record<PlatformType, string>> = {
+  android: "Android",
+  ios: "iOS",
+  windows: "Windows",
+  macos: "macOS",
+  linux: "Linux",
+};
+
 export function softwareApplicationJsonLd(product: Product) {
+  const releases =
+    digitalProducts.find((item) => item.slug === product.slug)?.releases ?? [];
+
+  // Describe what is actually released; fall back to the planned platforms
+  // only when nothing has shipped yet.
+  const released = releases.filter((release) => release.status === "released");
+  const described = released.length > 0 ? released : releases;
+
+  const operatingSystems = [
+    ...new Set(
+      described.flatMap((release) => operatingSystemName[release.platform] ?? []),
+    ),
+  ];
+
+  const isMobile = described.some(
+    (release) => release.platform === "android" || release.platform === "ios",
+  );
+
+  const applicationCategory =
+    product.kind === "game"
+      ? "GameApplication"
+      : isMobile
+        ? "MobileApplication"
+        : undefined;
+
+  // No price or sales data exists in the catalog, so no Offer is emitted.
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -30,9 +68,12 @@ export function softwareApplicationJsonLd(product: Product) {
     description: product.longDescription,
     url: `${siteConfig.url}${product.href}`,
     image: `${siteConfig.url}${product.image}`,
-    applicationCategory:
-      product.kind === "game" ? "GameApplication" : "MobileApplication",
-    operatingSystem: "Android",
+
+    ...(applicationCategory ? { applicationCategory } : {}),
+
+    ...(operatingSystems.length > 0
+      ? { operatingSystem: operatingSystems.join(", ") }
+      : {}),
 
     publisher: {
       "@type": "Organization",
@@ -41,16 +82,6 @@ export function softwareApplicationJsonLd(product: Product) {
     },
 
     ...(product.playstore ? { downloadUrl: product.playstore } : {}),
-
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      availability:
-        product.status === "Available"
-          ? "https://schema.org/InStock"
-          : "https://schema.org/PreOrder",
-    },
   };
 }
 

@@ -92,6 +92,12 @@ export interface SiteConfig {
     googleTagManagerId?: string;
   };
 
+  // Search engine ownership verification tokens (rendered as <meta> tags)
+  verification: {
+    google?: string;
+    yandex?: string;
+  };
+
   // 8. SEO Temel Değerleri
   keywords: string[];
 }
@@ -104,7 +110,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Privacy-focused Android applications, indie games and innovative software.",
 
-  url: "https://cipherrootsoftware.com",
+  url: "https://www.cipherrootsoftware.com",
 
   logo: {
     src: "/logo/cipherroot-logo.webp",
@@ -202,6 +208,10 @@ export const siteConfig: SiteConfig = {
 
   integrations: {
     googleAdSenseId: "ca-pub-9981866376896465",
+  },
+
+  verification: {
+    yandex: "af8779c9ba317c2d",
   },
 
   keywords: [

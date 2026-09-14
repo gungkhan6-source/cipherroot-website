@@ -41,6 +41,8 @@ export const metadata: Metadata = {
 
   keywords: siteConfig.keywords,
 
+  verification: siteConfig.verification,
+
   authors: [
     {
       name: siteConfig.name,

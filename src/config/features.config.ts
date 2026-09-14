@@ -32,7 +32,7 @@ export const featuresConfig: FeaturesConfig = {
   stats: true,
 
   contactForm: true,
-  newsletter: true,
+  newsletter: false,
   whatsappChat: false,
   googleMaps: false,
   appointment: false,
