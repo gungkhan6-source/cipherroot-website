@@ -4,6 +4,7 @@
  * (`immersive-experience-engine`); nothing here is copied from it.
  */
 export { default as ImmersiveHero } from "./ImmersiveHero";
+export { default as ImmersiveGamesHero } from "./ImmersiveGamesHero";
 export { default as ImmersiveStage } from "./ImmersiveStage";
-export { useImmersiveEngine, type ImmersiveEngineSettings } from "./useImmersiveEngine";
-export { immersiveConfig, type ImmersiveConfig } from "./immersive.config";
+export { useImmersiveEngine, type ImmersiveEngineSettings, type ImmersivePresetName } from "./useImmersiveEngine";
+export { immersiveConfig, immersiveGamesConfig, type ImmersiveConfig } from "./immersive.config";

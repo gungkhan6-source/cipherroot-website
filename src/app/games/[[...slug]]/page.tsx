@@ -8,6 +8,7 @@ import { games } from "@/data/products";
 import { pageMetadata } from "@/lib/metadata";
 import { moduleVisibility } from "@/lib/modules";
 import { gamesPageContent } from "@/content/pages.content";
+import { ImmersiveGamesHero } from "@/integrations/immersive";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -68,6 +69,41 @@ export default async function GamesPage({ params }: Props) {
   }
 
   if (!slug || slug.length === 0) {
+    // Immersive hero: it holds the page title (h1), the list gets an h2.
+    if (moduleVisibility.immersiveGames) {
+      return (
+        <main id="main-content" className="bg-surface-3 text-ink">
+
+          <ImmersiveGamesHero />
+
+          <section
+            id="games-list"
+            aria-labelledby="games-list-title"
+            className="mx-auto max-w-7xl scroll-mt-20 px-6 pt-20 pb-20 sm:px-8 sm:pt-28 sm:pb-28"
+          >
+
+            <h2
+              id="games-list-title"
+              className="mb-12 text-center text-balance text-3xl font-bold leading-tight tracking-tight text-ink sm:mb-16 sm:text-4xl md:text-5xl"
+            >
+              {gamesPageContent.listTitle}
+            </h2>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {games.map((game) => (
+                <ProductCard
+                  key={game.slug}
+                  app={game}
+                />
+              ))}
+            </div>
+
+          </section>
+
+        </main>
+      );
+    }
+
     return (
       <PageShell>
 

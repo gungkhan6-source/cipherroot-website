@@ -1,0 +1,14 @@
+/*
+ * Games hero additions on top of ImmersiveHero.module.css (layout, scroll
+ * range and fallback rules are shared). Only the static background differs:
+ * a cyan / magenta neon glow matching the games palette.
+ */
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 70% 45%, rgba(53, 230, 255, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 105%, rgba(255, 63, 209, 0.12) 0%, transparent 55%);
+}
