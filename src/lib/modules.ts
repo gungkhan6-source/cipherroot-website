@@ -28,6 +28,8 @@ export const moduleVisibility = {
   whatsapp: featuresConfig.whatsappChat && whatsappUrl !== undefined,
   maps: featuresConfig.googleMaps && mapsUrl !== undefined,
   appointment: featuresConfig.appointment && appointmentUrl !== undefined,
+  // Replaces the standard hero; no content requirement (it reuses the hero copy).
+  immersiveHero: featuresConfig.immersiveExperience,
 };
 
 const moduleForKind: Record<ProductKind, "apps" | "games"> = {

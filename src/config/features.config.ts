@@ -20,6 +20,8 @@ export interface FeaturesConfig {
   appointment: boolean;
 
   // Gelişmiş Özellikler
+  /** Interactive WebGL hero (Immersive Experience Engine) instead of the standard hero. */
+  immersiveExperience: boolean;
   aiAssistant: boolean;
   multilingual: boolean;
   darkModeToggle: boolean;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DownloadSection from "../components/DownloadSection";
 import Hero from "../components/Hero";
+import { ImmersiveHero } from "@/integrations/immersive";
 import Stats from "../components/Stats";
 import Products from "../components/Products";
 import WhyCipherRoot from "../components/WhyCipherRoot";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main id="main-content">
-      <Hero />
+      {moduleVisibility.immersiveHero ? <ImmersiveHero /> : <Hero />}
       {moduleVisibility.stats && <Stats />}
       {moduleVisibility.services && <ServicesSection />}
       {visibleProducts.length > 0 && <Products />}

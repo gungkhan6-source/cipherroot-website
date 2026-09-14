@@ -11,6 +11,8 @@ export interface HomeContent {
     badge: string;
     title: string;
     description: string;
+    /** Shorter description for the immersive hero, where the visual leads. */
+    immersiveDescription?: string;
     primaryCta: {
       label: string;
       href: string;
@@ -72,6 +74,8 @@ export const homeContent: HomeContent = {
     title: "Building Secure Software For The Future",
     description:
       "We build privacy-focused applications, modern Android tools, indie games and technical solutions designed for performance, security and simplicity.",
+    immersiveDescription:
+      "Privacy-focused apps, Android tools and indie games, built for performance and security.",
     primaryCta: {
       label: "Explore Products",
       href: "/apps",
