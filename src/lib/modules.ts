@@ -6,7 +6,7 @@ import { portfolioItems, services } from "@/data/offerings";
 import { faqItems } from "@/data/faq";
 import { testimonialItems } from "@/data/testimonials";
 import { galleryItems } from "@/data/gallery";
-import { mapsUrl, whatsappUrl } from "@/lib/contact";
+import { appointmentUrl, mapsUrl, whatsappUrl } from "@/lib/contact";
 
 /**
  * A module is shown only when its feature is enabled AND it has real content.
@@ -27,6 +27,7 @@ export const moduleVisibility = {
   gallery: featuresConfig.gallery && galleryItems.length > 0,
   whatsapp: featuresConfig.whatsappChat && whatsappUrl !== undefined,
   maps: featuresConfig.googleMaps && mapsUrl !== undefined,
+  appointment: featuresConfig.appointment && appointmentUrl !== undefined,
 };
 
 const moduleForKind: Record<ProductKind, "apps" | "games"> = {

@@ -20,6 +20,17 @@ export const whatsappUrl = whatsappNumber
   ? `https://wa.me/${whatsappNumber}`
   : undefined;
 
+// Only absolute https links are used for the external booking page.
+function httpsUrl(value?: string): string | undefined {
+  try {
+    return value && new URL(value).protocol === "https:" ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export const appointmentUrl = httpsUrl(siteConfig.appointmentUrl?.trim());
+
 const { address } = siteConfig;
 
 // "street, postalCode city, country" — only the parts that are filled in.

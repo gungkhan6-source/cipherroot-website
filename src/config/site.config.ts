@@ -56,6 +56,9 @@ export interface SiteConfig {
     // Explicit Maps link; when absent, a search link is built from the address
     googleMapsUrl?: string;
   };
+  // External booking page (e.g. a Calendly or Google Calendar booking link).
+  // Shown on the contact page when the appointment feature is enabled.
+  appointmentUrl?: string;
 
   // 3. Sosyal Medya ve Dış Bağlantılar
   github: string;
@@ -91,6 +94,8 @@ export interface SiteConfig {
   // 7. Entegrasyonlar
   integrations: {
     googleAdSenseId?: string;
+    // Public client-side IDs; empty = not loaded. Not production-ready:
+    // leave empty until legal text and consent exist (src/lib/analytics.ts).
     googleAnalyticsId?: string;
     googleTagManagerId?: string;
   };

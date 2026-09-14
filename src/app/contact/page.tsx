@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/lib/siteConfig";
 import { featuresConfig } from "@/config/features.config";
 import { contactContent } from "@/content/contact.content";
-import { formattedAddress, mapsUrl, whatsappUrl } from "@/lib/contact";
+import { appointmentUrl, formattedAddress, mapsUrl, whatsappUrl } from "@/lib/contact";
 import { moduleVisibility } from "@/lib/modules";
 
 export const metadata = pageMetadata({
@@ -93,6 +93,24 @@ export default function ContactPage() {
               className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
             >
               {contactContent.directChannels.whatsappLabel}
+            </a>
+          </div>
+        )}
+
+        {moduleVisibility.appointment && (
+          <div>
+            <h2 className="text-xl font-semibold">
+              {contactContent.directChannels.appointmentTitle}
+            </h2>
+
+            <a
+              href={appointmentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${contactContent.directChannels.appointmentLabel} (opens in a new tab)`}
+              className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
+            >
+              {contactContent.directChannels.appointmentLabel}
             </a>
           </div>
         )}

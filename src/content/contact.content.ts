@@ -44,6 +44,8 @@ export interface ContactContent {
     whatsappTitle: string;
     whatsappLabel: string;
     addressTitle: string;
+    appointmentTitle: string;
+    appointmentLabel: string;
   };
 }
 
@@ -94,5 +96,7 @@ export const contactContent: ContactContent = {
     whatsappTitle: "WhatsApp",
     whatsappLabel: "Chat on WhatsApp",
     addressTitle: "Address",
+    appointmentTitle: "Appointment",
+    appointmentLabel: "Book an appointment",
   },
 };

@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site.config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AnalyticsScripts, { GoogleTagManagerNoscript } from "@/components/AnalyticsScripts";
 import { navigationConfig } from "@/config/navigation.config";
 
 const geistSans = Geist({
@@ -76,6 +77,11 @@ export const metadata: Metadata = {
  * CSS Variable Bridge:
  * Maps theme colors defined in site.config.ts into runtime CSS variables
  * that match Tailwind CSS v4 design tokens.
+ *
+ * KNOWN ISSUE (next: Phase 5.10.1 — config-driven theme token propagation):
+ * globals.css uses `@theme inline`, so utilities are compiled with fixed
+ * values and these variables do not reach them yet. Changing
+ * theme.colors currently has almost no visible effect.
  */
 const themeVariables = `
   :root {
@@ -110,6 +116,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GoogleTagManagerNoscript />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -140,6 +148,8 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
           />
         )}
+
+        <AnalyticsScripts />
 
         <Header nav={navigationConfig.headerNav} cta={navigationConfig.headerCta} />
         {children}
