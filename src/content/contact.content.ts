@@ -17,6 +17,23 @@ export interface ContactContent {
     messagePlaceholder: string;
     messageHint: string;
     submitLabel: string;
+    /** Used when message delivery is configured. */
+    activeNotice: string;
+    sendLabel: string;
+    sendingLabel: string;
+    successMessage: string;
+    errorMessage: string;
+    unavailableMessage: string;
+    invalidMessage: string;
+    honeypotLabel: string;
+    /** Prefix of the subject line of the email the site owner receives. */
+    deliverySubjectPrefix: string;
+    fieldErrors: {
+      required: string;
+      invalid: string;
+      tooShort: string;
+      tooLong: string;
+    };
   };
   directChannels: {
     emailTitle: string;
@@ -51,6 +68,21 @@ export const contactContent: ContactContent = {
     messagePlaceholder: "Tell us a little about your idea or question.",
     messageHint: "Required. Please include as much detail as you can.",
     submitLabel: "Coming Soon",
+    activeNotice: "Send us a message below, or reach us directly at",
+    sendLabel: "Send Message",
+    sendingLabel: "Sending…",
+    successMessage: "Thank you. Your message has been sent and we will reply by email.",
+    errorMessage: "Your message could not be sent right now. Please try again later or email us directly.",
+    unavailableMessage: "Message sending is currently unavailable. Please email us directly.",
+    invalidMessage: "Please check the highlighted fields and try again.",
+    honeypotLabel: "Leave this field empty",
+    deliverySubjectPrefix: "Contact form:",
+    fieldErrors: {
+      required: "This field is required.",
+      invalid: "Please enter a valid value.",
+      tooShort: "Please write a little more.",
+      tooLong: "This is too long.",
+    },
   },
 
   directChannels: {

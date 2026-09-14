@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site.config";
+import { featuresConfig } from "@/config/features.config";
 
 export interface LegalSection {
   title: string;
@@ -28,7 +29,7 @@ export const privacyPolicyContent: LegalPageContent = {
   title: "Privacy Policy",
   metaDescription:
     "How CipherRoot Software collects, uses and protects information, including cookies, advertising and third-party services.",
-  updated: "2026-07-28",
+  updated: "2026-09-14",
   intro:
     "This policy explains what information is collected when you visit cipherrootsoftware.com, how it is used, who it is shared with, and the control you have over it.",
   sections: [
@@ -45,7 +46,7 @@ export const privacyPolicyContent: LegalPageContent = {
         "This website is a static site. It does not require registration, it does not host user accounts, and it does not operate a database of visitors. The information involved falls into three categories:",
       ],
       bullets: [
-        "Information you provide voluntarily — if you contact us by email, we receive your email address and whatever you choose to write. We use it only to reply.",
+        `Information you provide voluntarily — if you contact us by email, we receive your email address and whatever you choose to write.${featuresConfig.contactForm ? " If you use the contact form, we receive the name, email address, subject and message you submit; this information may be transmitted to us through an email delivery service provider." : ""} We use it only to reply.`,
         "Technical information — like any website, our hosting provider automatically records standard request data such as IP address, browser type, device type, referring page and time of request. This is used for delivery, security and abuse prevention.",
         "Cookie-based information — cookies may be set by third-party services such as advertising or analytics providers, as described in the sections below and in our Cookie Policy.",
       ],
