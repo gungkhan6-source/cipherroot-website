@@ -8,9 +8,13 @@
    Tokens below mirror the colors already used in the project.
    Nothing is recolored here — values are only given names.
    Components migrate to these tokens one at a time in Phase 3.
+
+   Colors use a plain @theme block, so utilities reference the CSS variables
+   (bg-brand -> var(--color-brand)). The values here are defaults; layout.tsx
+   overrides the configurable ones from site.config.ts theme.colors.
 ============================================================ */
 
-@theme inline {
+@theme {
   /* --- Surfaces (mevcut arbitrary değerlerin karşılığı) --- */
   --color-surface-0: #000000; /* bg-black        */
   --color-surface-1: #050505; /* Stats, Download */
@@ -41,7 +45,10 @@
   /* --- Text --- */
   --color-ink: #ffffff;
   --color-ink-muted: #a1a1aa; /* zinc-400 */
+}
 
+/* Fonts stay inline: they point at next/font variables set on <html>. */
+@theme inline {
   /* --- Typography (Geist is wired in Phase 1 / Step 2) --- */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

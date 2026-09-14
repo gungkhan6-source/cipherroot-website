@@ -37,7 +37,7 @@ export default function OpengraphImage() {
             display: "flex",
             fontSize: 84,
             fontWeight: 700,
-            color: "#ffffff",
+            color: colors.ink,
             letterSpacing: "-0.03em",
           }}
         >
@@ -51,7 +51,7 @@ export default function OpengraphImage() {
             maxWidth: 860,
             fontSize: 36,
             lineHeight: 1.4,
-            color: "#a1a1aa",
+            color: colors.inkMuted,
           }}
         >
           {siteConfig.description}

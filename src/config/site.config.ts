@@ -26,6 +26,10 @@ export interface ThemeColors {
   surface2: string;
   surface3: string;
   card: string;
+  ink: string;
+  inkMuted: string;
+  line: string;
+  lineStrong: string;
 }
 
 export interface SiteConfig {
@@ -174,6 +178,10 @@ export const siteConfig: SiteConfig = {
       surface2: "#070707",
       surface3: "#090909",
       card: "#18181b",
+      ink: "#ffffff",
+      inkMuted: "#a1a1aa",
+      line: "#27272a",
+      lineStrong: "#3f3f46",
     },
   },
 

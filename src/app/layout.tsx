@@ -76,12 +76,9 @@ export const metadata: Metadata = {
 /**
  * CSS Variable Bridge:
  * Maps theme colors defined in site.config.ts into runtime CSS variables
- * that match Tailwind CSS v4 design tokens.
- *
- * KNOWN ISSUE (next: Phase 5.10.1 — config-driven theme token propagation):
- * globals.css uses `@theme inline`, so utilities are compiled with fixed
- * values and these variables do not reach them yet. Changing
- * theme.colors currently has almost no visible effect.
+ * that match Tailwind CSS v4 design tokens. Color utilities reference these
+ * variables (see globals.css), so theme.colors recolors the site on the next
+ * build. Status colors (success, warning) are intentionally not configurable.
  */
 const themeVariables = `
   :root {
@@ -96,6 +93,10 @@ const themeVariables = `
     --color-surface-2: ${siteConfig.theme.colors.surface2};
     --color-surface-3: ${siteConfig.theme.colors.surface3};
     --color-card: ${siteConfig.theme.colors.card};
+    --color-ink: ${siteConfig.theme.colors.ink};
+    --color-ink-muted: ${siteConfig.theme.colors.inkMuted};
+    --color-line: ${siteConfig.theme.colors.line};
+    --color-line-strong: ${siteConfig.theme.colors.lineStrong};
   }
 `;
 
