@@ -44,6 +44,21 @@ export interface HomeContent {
     title: string;
     description: string;
   };
+  gallery: {
+    badge: string;
+    title: string;
+    description: string;
+  };
+  testimonials: {
+    badge: string;
+    title: string;
+    description: string;
+  };
+  faq: {
+    badge: string;
+    title: string;
+    description: string;
+  };
   downloadCta: {
     badge: string;
     title: string;
@@ -113,6 +128,24 @@ export const homeContent: HomeContent = {
     title: "Insights & Development",
     description:
       "Follow our latest technical articles, development diaries and software engineering insights.",
+  },
+
+  gallery: {
+    badge: "Gallery",
+    title: "Gallery",
+    description: "A closer look at our work.",
+  },
+
+  testimonials: {
+    badge: "Testimonials",
+    title: "What People Say",
+    description: "Feedback from the people we work with.",
+  },
+
+  faq: {
+    badge: "FAQ",
+    title: "Frequently Asked Questions",
+    description: "Answers to common questions.",
   },
 
   downloadCta: {

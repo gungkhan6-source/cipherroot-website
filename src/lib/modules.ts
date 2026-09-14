@@ -3,6 +3,9 @@ import { homeContent } from "@/content/home.content";
 import { apps, games, products, type ProductKind } from "@/data/products";
 import { posts } from "@/data/posts";
 import { services } from "@/data/offerings";
+import { faqItems } from "@/data/faq";
+import { testimonialItems } from "@/data/testimonials";
+import { galleryItems } from "@/data/gallery";
 import { mapsUrl, whatsappUrl } from "@/lib/contact";
 
 /**
@@ -18,6 +21,9 @@ export const moduleVisibility = {
   services: featuresConfig.services && services.length > 0,
   blog: featuresConfig.blog && posts.length > 0,
   stats: featuresConfig.stats && homeContent.stats.length > 0,
+  faq: featuresConfig.faq && faqItems.length > 0,
+  testimonials: featuresConfig.testimonials && testimonialItems.length > 0,
+  gallery: featuresConfig.gallery && galleryItems.length > 0,
   whatsapp: featuresConfig.whatsappChat && whatsappUrl !== undefined,
   maps: featuresConfig.googleMaps && mapsUrl !== undefined,
 };
