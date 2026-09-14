@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site.config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { navigationConfig } from "@/config/navigation.config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -140,7 +141,7 @@ export default function RootLayout({
           />
         )}
 
-        <Header />
+        <Header nav={navigationConfig.headerNav} cta={navigationConfig.headerCta} />
         {children}
         <Footer />
       </body>

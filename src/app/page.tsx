@@ -5,7 +5,7 @@ import Stats from "../components/Stats";
 import Products from "../components/Products";
 import WhyCipherRoot from "../components/WhyCipherRoot";
 import LatestArticles from "../components/LatestArticles";
-import { featuresConfig } from "@/config/features.config";
+import { moduleVisibility, visibleProducts } from "@/lib/modules";
 
 export const metadata: Metadata = {
   alternates: {
@@ -18,11 +18,11 @@ export default function Home() {
   return (
     <main id="main-content">
       <Hero />
-      {featuresConfig.stats && <Stats />}
-      <Products />
+      {moduleVisibility.stats && <Stats />}
+      {visibleProducts.length > 0 && <Products />}
       <WhyCipherRoot />
-      {featuresConfig.blog && <LatestArticles />}
-      <DownloadSection />
+      {moduleVisibility.blog && <LatestArticles />}
+      {visibleProducts.length > 0 && <DownloadSection />}
     </main>
   );
 }

@@ -17,6 +17,8 @@ export type PackageName = "starter" | "business" | "premium";
  */
 export const implementedFeatures: readonly FeatureName[] = [
   "blog",
+  "apps",
+  "games",
   "stats",
   "contactForm",
   "newsletter",
@@ -38,6 +40,8 @@ const business: FeatureName[] = [
 const premium: FeatureName[] = [
   ...business,
   "blog",
+  "apps",
+  "games",
   "portfolio",
   "newsletter",
   "multilingual",
@@ -51,6 +55,8 @@ export const packages: Record<PackageName, readonly FeatureName[]> = {
 
 const noFeatures: FeaturesConfig = {
   blog: false,
+  apps: false,
+  games: false,
   services: false,
   portfolio: false,
   gallery: false,

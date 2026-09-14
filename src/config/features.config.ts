@@ -3,6 +3,8 @@ import { resolveFeatures } from "./packages.config";
 export interface FeaturesConfig {
   // İçerik ve Bölümler
   blog: boolean;
+  apps: boolean;
+  games: boolean;
   services: boolean;
   portfolio: boolean;
   gallery: boolean;

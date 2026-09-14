@@ -38,12 +38,14 @@ export default function Hero({ content = homeContent.hero }: Props) {
 
         <div className="mt-12 flex flex-wrap justify-center gap-5">
 
-          <Link
-            href={content.primaryCta.href}
-            className="inline-flex w-full items-center justify-center rounded-xl bg-brand px-8 py-4 sm:w-auto font-semibold text-ink shadow-lg shadow-brand/20 transition-all duration-300 hover:scale-105 hover:bg-brand-hover"
-          >
-            {content.primaryCta.label}
-          </Link>
+          {isRouteEnabled(content.primaryCta.href) && (
+            <Link
+              href={content.primaryCta.href}
+              className="inline-flex w-full items-center justify-center rounded-xl bg-brand px-8 py-4 sm:w-auto font-semibold text-ink shadow-lg shadow-brand/20 transition-all duration-300 hover:scale-105 hover:bg-brand-hover"
+            >
+              {content.primaryCta.label}
+            </Link>
+          )}
 
           {isRouteEnabled(content.secondaryCta.href) && (
             <Link

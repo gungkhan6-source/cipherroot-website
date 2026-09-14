@@ -4,9 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/config/site.config";
-import { navigationConfig } from "@/config/navigation.config";
+import type { NavigationConfig } from "@/config/navigation.config";
 
-export default function Header() {
+type Props = {
+  nav: NavigationConfig["headerNav"];
+  cta?: NavigationConfig["headerCta"];
+};
+
+export default function Header({ nav, cta }: Props) {
   const [open, setOpen] = useState(false);
 
   const closeMenu = () => setOpen(false);
@@ -39,7 +44,7 @@ export default function Header() {
 
         <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
 
-          {navigationConfig.headerNav.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -53,12 +58,14 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
 
-          <Link
-            href={navigationConfig.headerCta.href}
-            className="hidden rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover lg:inline-flex"
-          >
-            {navigationConfig.headerCta.label}
-          </Link>
+          {cta && (
+            <Link
+              href={cta.href}
+              className="hidden rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover lg:inline-flex"
+            >
+              {cta.label}
+            </Link>
+          )}
 
           <button
             type="button"
@@ -107,7 +114,7 @@ export default function Header() {
 
           <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col px-6 py-6 sm:px-8">
 
-            {navigationConfig.headerNav.map((item) => (
+            {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -118,13 +125,15 @@ export default function Header() {
               </Link>
             ))}
 
-            <Link
-              href={navigationConfig.headerCta.href}
-              onClick={closeMenu}
-              className="mt-4 inline-flex items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover"
-            >
-              {navigationConfig.headerCta.label}
-            </Link>
+            {cta && (
+              <Link
+                href={cta.href}
+                onClick={closeMenu}
+                className="mt-4 inline-flex items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-ink transition hover:bg-brand-hover"
+              >
+                {cta.label}
+              </Link>
+            )}
 
           </nav>
 

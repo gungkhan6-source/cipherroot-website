@@ -2,7 +2,9 @@ import { pageMetadata } from "@/lib/metadata";
 import ProductCard from "@/components/ProductCard";
 import SectionTitle from "@/components/SectionTitle";
 import { apps } from "@/data/products";
+import { notFound } from "next/navigation";
 import PageShell from "@/components/ui/PageShell";
+import { moduleVisibility } from "@/lib/modules";
 import { appsPageContent } from "@/content/pages.content";
 
 export const metadata = pageMetadata({
@@ -13,6 +15,10 @@ export const metadata = pageMetadata({
 
 
 export default function AppsPage() {
+  if (!moduleVisibility.apps) {
+    notFound();
+  }
+
   return (
     <PageShell>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SectionTitle from "./SectionTitle";
 import Section from "./ui/Section";
-import { products } from "@/data/products";
+import { visibleProducts } from "@/lib/modules";
 import { homeContent, type HomeContent } from "@/content/home.content";
 
 type Props = {
@@ -20,7 +20,7 @@ export default function DownloadSection({ content = homeContent.downloadCta }: P
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-          {products.map((product) => (
+          {visibleProducts.map((product) => (
             <div
               key={product.name}
               className="flex h-full flex-col rounded-3xl border border-line bg-card p-6 sm:p-8 lg:p-10"

@@ -4,7 +4,7 @@ import SectionTitle from "@/components/SectionTitle";
 import PostCard from "@/components/PostCard";
 import { notFound } from "next/navigation";
 import { posts } from "@/data/posts";
-import { featuresConfig } from "@/config/features.config";
+import { moduleVisibility } from "@/lib/modules";
 import { blogPageContent } from "@/content/pages.content";
 
 export const metadata = pageMetadata({
@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
 });
 
 export default function BlogPage() {
-  if (!featuresConfig.blog) {
+  if (!moduleVisibility.blog) {
     notFound();
   }
 

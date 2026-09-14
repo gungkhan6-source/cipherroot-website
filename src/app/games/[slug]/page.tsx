@@ -4,6 +4,7 @@ import { games } from "@/data/products";
 import PageShell from "@/components/ui/PageShell";
 import OfferingDetail from "@/components/OfferingDetail";
 import { pageMetadata } from "@/lib/metadata";
+import { moduleVisibility } from "@/lib/modules";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -18,6 +19,10 @@ export const dynamicParams = false;
 const STATIC_GAME_SLUGS = ["retro-pixel-football"];
 
 export function generateStaticParams() {
+  if (!moduleVisibility.games) {
+    return [];
+  }
+
   return games
     .filter((game) => !STATIC_GAME_SLUGS.includes(game.slug))
     .map((game) => ({ slug: game.slug }));

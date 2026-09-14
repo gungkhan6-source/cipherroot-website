@@ -5,6 +5,7 @@ import PageShell from "@/components/ui/PageShell";
 import OfferingDetail from "@/components/OfferingDetail";
 import { softwareApplicationJsonLd } from "@/lib/jsonLd";
 import { pageMetadata } from "@/lib/metadata";
+import { moduleVisibility } from "@/lib/modules";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,10 @@ type Props = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
+  if (!moduleVisibility.apps) {
+    return [];
+  }
+
   return apps.map((app) => ({ slug: app.slug }));
 }
 

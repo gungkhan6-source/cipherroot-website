@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { games } from "@/data/products";
 import PageShell from "@/components/ui/PageShell";
 import OfferingDetail from "@/components/OfferingDetail";
+import { moduleVisibility } from "@/lib/modules";
 
 export const metadata = pageMetadata({
   title: "Retro Pixel Football",
@@ -15,7 +16,7 @@ export const metadata = pageMetadata({
 export default function RetroPixelFootballPage() {
   const product = games.find((game) => game.slug === "retro-pixel-football");
 
-  if (!product) {
+  if (!moduleVisibility.games || !product) {
     notFound();
   }
 

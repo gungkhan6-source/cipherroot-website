@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/siteConfig";
-import { products } from "@/data/products";
 import { posts } from "@/data/posts";
-import { featuresConfig } from "@/config/features.config";
+import { moduleVisibility, visibleProducts } from "@/lib/modules";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -11,24 +10,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
 
-    {
-      url: `${siteConfig.url}/apps`,
-      priority: 0.9,
-    },
+    ...(moduleVisibility.apps
+      ? [
+          {
+            url: `${siteConfig.url}/apps`,
+            priority: 0.9,
+          },
+        ]
+      : []),
 
-    {
-      url: `${siteConfig.url}/games`,
-      priority: 0.9,
-    },
+    ...(moduleVisibility.games
+      ? [
+          {
+            url: `${siteConfig.url}/games`,
+            priority: 0.9,
+          },
+        ]
+      : []),
 
-    // Product detail pages are generated from the single source of truth.
-    ...products.map((product) => ({
+    // Product detail pages of visible modules, from the single source of truth.
+    ...visibleProducts.map((product) => ({
       url: `${siteConfig.url}${product.href}`,
       priority: 0.8,
     })),
 
-    // Blog listing and posts exist only while the blog feature is on.
-    ...(featuresConfig.blog
+    // Blog listing and posts exist only while the blog module is visible.
+    ...(moduleVisibility.blog
       ? [
           {
             url: `${siteConfig.url}/blog`,
