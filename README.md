@@ -1,105 +1,68 @@
 # CipherRoot Website
 
-Official website and web platform for CipherRoot Software.
+Official website of CipherRoot Software: Android applications, indie games,
+creative tools and technology articles.
 
-CipherRoot Website is a modern web application built with Next.js and TypeScript, providing a foundation for presenting software projects, digital products, and development work.
+The codebase is also the base of **NovaRec Web Starter**, a reusable,
+config-driven website template. See
+[docs/NOVAREC_WEB_STARTER.md](docs/NOVAREC_WEB_STARTER.md).
 
-## ✨ Features
+## Stack
 
-- 🌐 Modern web interface
-- 📱 Responsive design
-- ⚡ Next.js App Router
-- 🧩 TypeScript-based development
-- 🎨 CSS-based styling
-- 🔤 Optimized font loading with `next/font`
-- 🚀 Production-ready Next.js architecture
-- 📦 Vercel deployment support
+- Next.js 16 (App Router, Turbopack), React 19, TypeScript
+- Tailwind CSS v4
+- Static generation; deployed on Vercel
 
-## 🛠️ Technologies
+## Getting Started
 
-- Next.js
-- React
-- TypeScript
-- CSS
-- JavaScript
-- Node.js
-- npm
-
-## 🚀 Getting Started
-
-Clone the repository:
+Requirements: Node.js and npm.
 
 ```bash
 git clone https://github.com/gungkhan6-source/cipherroot-website.git
 cd cipherroot-website
-
-Install dependencies:
-
 npm install
-
-Start the development server:
-
 npm run dev
+```
 
-Open the application in your browser:
+Open http://localhost:3000.
 
-http://localhost:3000
-📁 Project Structure
+## Scripts
 
-The project uses the Next.js App Router architecture.
+| Command         | Purpose                         |
+| --------------- | ------------------------------- |
+| `npm run dev`   | Development server              |
+| `npm run lint`  | ESLint                          |
+| `npm run build` | Production build (static pages) |
+| `npm start`     | Serve the production build      |
 
-cipherroot-website/
-│
-├── app/
-│   ├── page.tsx
-│   └── ...
-│
-├── public/
-│   └── ...
-│
-├── package.json
-├── tsconfig.json
-└── ...
-🏗️ Development
+Type check: `npx tsc --noEmit`.
 
-The main application page can be developed through:
+## Project Structure
 
-app/page.tsx
+```text
+content/blog/        Blog posts (one folder per post: meta.json + article.md)
+docs/                Project documentation
+public/              Static files (images, logo, blog covers, ads.txt)
+src/app/             Routes, layout, metadata routes (sitemap, robots, manifest, OG image)
+src/components/      Reusable UI components
+src/config/          Site, feature, package and navigation configuration
+src/content/         Page copy and shared UI text
+src/data/            Catalog (products, services, portfolio), FAQ, testimonials, gallery, blog loader
+src/lib/             Helpers: metadata, JSON-LD, module visibility, contact form, analytics
+src/types/           Shared TypeScript types
+```
 
-Next.js automatically updates the browser during development when source files are modified.
+## Documentation
 
-📦 Production Build
+- [NovaRec Web Starter guide](docs/NOVAREC_WEB_STARTER.md) — configuration,
+  packages, content, integrations, deployment
+- [V2 progress](docs/V2_PROGRESS.md) — completed phases, known limitations
 
-Create an optimized production build:
+## Deployment
 
-npm run build
+Pushing to `main` deploys to Vercel. Configuration and content are applied at
+build time, so changes require a new deployment.
 
-Start the production server:
+## License
 
-npm start
-☁️ Deployment
-
-The project is designed to be compatible with Vercel and other platforms capable of hosting Next.js applications.
-
-🎯 Project Purpose
-
-CipherRoot Website serves as a central web presence for CipherRoot Software and its software development projects.
-
-The platform is intended to evolve alongside future applications, tools, and digital products.
-
-🔮 Future Development
-
-Planned improvements may include:
-
-Additional project pages
-Software product showcases
-Blog and development articles
-Improved SEO
-Performance optimizations
-Additional responsive UI components
-Integration with future CipherRoot Software projects
-📄 License
-
-See the repository license for details.
-
-Part of the CipherRoot Software ecosystem.
+This repository does not currently include a license file.
