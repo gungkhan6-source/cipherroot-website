@@ -3,9 +3,8 @@ import PageShell from "@/components/ui/PageShell";
 import { aboutContent } from "@/content/about.content";
 
 export const metadata = pageMetadata({
-  title: "About",
-  description:
-    "CipherRoot Software is an independent software studio focused on privacy, security and creative technologies.",
+  title: aboutContent.metaTitle,
+  description: aboutContent.metaDescription,
   path: "/about",
 });
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { uiContent } from "@/content/ui.content";
 
 export default function NotFound() {
   return (
@@ -9,14 +10,14 @@ export default function NotFound() {
       </h1>
 
       <p className="mt-6 text-ink-muted">
-        The page you are looking for could not be found.
+        {uiContent.status.notFoundMessage}
       </p>
 
       <Link
         href="/"
         className="mt-10 rounded-xl bg-brand px-6 py-3 font-semibold transition hover:bg-brand-hover"
       >
-        Back to Home
+        {uiContent.actions.backToHome}
       </Link>
 
     </main>

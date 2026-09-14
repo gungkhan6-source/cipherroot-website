@@ -4,6 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/lib/siteConfig";
 import { featuresConfig } from "@/config/features.config";
 import { contactContent } from "@/content/contact.content";
+import { uiContent } from "@/content/ui.content";
 import { appointmentUrl, formattedAddress, mapsUrl, whatsappUrl } from "@/lib/contact";
 import { moduleVisibility } from "@/lib/modules";
 
@@ -56,7 +57,7 @@ export default function ContactPage() {
             href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${contactContent.directChannels.githubTitle} (opens in a new tab)`}
+            aria-label={uiContent.accessibility.newTab(contactContent.directChannels.githubTitle)}
             className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
           >
             {contactContent.directChannels.githubLabel}
@@ -72,7 +73,7 @@ export default function ContactPage() {
             href={siteConfig.youtube}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${contactContent.directChannels.youtubeTitle} (opens in a new tab)`}
+            aria-label={uiContent.accessibility.newTab(contactContent.directChannels.youtubeTitle)}
             className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
           >
             {contactContent.directChannels.youtubeLabel}
@@ -89,7 +90,7 @@ export default function ContactPage() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${contactContent.directChannels.whatsappLabel} (opens in a new tab)`}
+              aria-label={uiContent.accessibility.newTab(contactContent.directChannels.whatsappLabel)}
               className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
             >
               {contactContent.directChannels.whatsappLabel}
@@ -107,7 +108,7 @@ export default function ContactPage() {
               href={appointmentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${contactContent.directChannels.appointmentLabel} (opens in a new tab)`}
+              aria-label={uiContent.accessibility.newTab(contactContent.directChannels.appointmentLabel)}
               className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
             >
               {contactContent.directChannels.appointmentLabel}
@@ -125,7 +126,7 @@ export default function ContactPage() {
               href={mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${formattedAddress ?? contactContent.directChannels.addressTitle} on Google Maps (opens in a new tab)`}
+              aria-label={uiContent.accessibility.newTab(`${formattedAddress ?? contactContent.directChannels.addressTitle} ${contactContent.directChannels.mapsSuffix}`)}
               className="mt-2 inline-block text-brand-light transition hover:text-brand-mid"
             >
               {formattedAddress ?? contactContent.directChannels.addressTitle}

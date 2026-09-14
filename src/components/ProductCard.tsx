@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { uiContent } from "@/content/ui.content";
 import type { Product } from "@/data/products";
 
 /**
@@ -57,10 +58,10 @@ export default function ProductCard({ app }: Props) {
 
         <Link
           href={app.href}
-          aria-label={`Learn more about ${app.name}`}
+          aria-label={uiContent.actions.learnMoreAbout(app.name)}
           className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl border border-line-strong px-4 py-3 text-sm font-medium text-ink transition hover:border-brand hover:text-brand-light xl:w-auto xl:text-base"
         >
-          Learn More
+          {uiContent.actions.learnMore}
         </Link>
 
         {app.playstore ? (
@@ -68,7 +69,7 @@ export default function ProductCard({ app }: Props) {
             href={app.playstore}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${app.name} on ${app.button} (opens in a new tab)`}
+            aria-label={uiContent.actions.storeLabel(app.name, app.button)}
             className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-4 py-3 text-sm font-medium text-ink transition hover:bg-brand-hover xl:w-auto xl:text-base"
           >
             {app.button}

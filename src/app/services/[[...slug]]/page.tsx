@@ -9,6 +9,7 @@ import { services } from "@/data/offerings";
 import { pageMetadata } from "@/lib/metadata";
 import { moduleVisibility } from "@/lib/modules";
 import { servicesPageContent } from "@/content/pages.content";
+import { uiContent } from "@/content/ui.content";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -138,7 +139,7 @@ export default async function ServicesPage({ params }: Props) {
                 href="/contact"
                 className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-6 py-4 font-semibold transition hover:bg-brand-hover sm:w-auto"
               >
-                {service.ctaText ?? "Contact"}
+                {service.ctaText ?? uiContent.actions.contact}
               </Link>
             </div>
 

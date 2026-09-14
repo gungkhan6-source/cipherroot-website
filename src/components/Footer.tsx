@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site.config";
 import { navigationConfig } from "@/config/navigation.config";
 import { featuresConfig } from "@/config/features.config";
 import NewsletterForm from "./NewsletterForm";
+import { uiContent } from "@/content/ui.content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -62,7 +63,7 @@ export default function Footer() {
           <nav aria-labelledby="footer-contact">
 
             <h2 id="footer-contact" className="mb-5 text-lg font-semibold">
-              Contact
+              {uiContent.footer.contactTitle}
             </h2>
 
             <ul className="space-y-3 text-ink-muted">
@@ -73,7 +74,7 @@ export default function Footer() {
                   className="inline-flex items-center gap-2 transition hover:text-ink"
                 >
                   <span aria-hidden="true">📧</span>
-                  Email
+                  {uiContent.footer.emailLabel}
                 </a>
               </li>
 
@@ -83,7 +84,7 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${item.name} (opens in a new tab)`}
+                    aria-label={uiContent.accessibility.newTab(item.name)}
                     className="transition hover:text-ink"
                   >
                     {item.name}
@@ -98,7 +99,7 @@ export default function Footer() {
           <nav aria-labelledby="footer-legal">
 
             <h2 id="footer-legal" className="mb-5 text-lg font-semibold">
-              Legal
+              {uiContent.footer.legalTitle}
             </h2>
 
             <ul className="space-y-3 text-ink-muted">
@@ -115,8 +116,8 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-14 border-t border-line pt-8 text-center text-sm text-zinc-500 sm:mt-16 sm:text-base">
-          © {year} {siteConfig.name}. All rights reserved.
+        <div className="mt-14 border-t border-line pt-8 text-center text-sm text-ink-subtle sm:mt-16 sm:text-base">
+          © {year} {siteConfig.name}. {uiContent.footer.rightsReserved}
         </div>
 
       </div>

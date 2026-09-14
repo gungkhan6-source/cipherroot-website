@@ -9,6 +9,7 @@ import { portfolioItems } from "@/data/offerings";
 import { pageMetadata } from "@/lib/metadata";
 import { moduleVisibility } from "@/lib/modules";
 import { portfolioPageContent } from "@/content/pages.content";
+import { uiContent } from "@/content/ui.content";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -105,9 +106,9 @@ export default async function PortfolioPage({ params }: Props) {
 
   // Only facts the project actually provides; empty rows are never rendered.
   const details = [
-    { label: "Client", value: project.client },
-    { label: "Completed", value: project.completionDate },
-    { label: "Technologies", value: project.tags?.join(", ") },
+    { label: uiContent.details.client, value: project.client },
+    { label: uiContent.details.completed, value: project.completionDate },
+    { label: uiContent.details.technologies, value: project.tags?.join(", ") },
   ].filter((row) => row.value);
 
   return (
@@ -149,10 +150,10 @@ export default async function PortfolioPage({ params }: Props) {
                 href={project.projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${project.name} (opens in a new tab)`}
+                aria-label={uiContent.actions.viewProjectLabel(project.name)}
                 className={primaryLinkClass}
               >
-                View Project
+                {uiContent.actions.viewProject}
               </a>
             )}
 
@@ -161,15 +162,15 @@ export default async function PortfolioPage({ params }: Props) {
                 href={project.repositoryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${project.name} source code (opens in a new tab)`}
+                aria-label={uiContent.actions.viewSourceLabel(project.name)}
                 className={project.projectUrl ? secondaryLinkClass : primaryLinkClass}
               >
-                View Source
+                {uiContent.actions.viewSource}
               </a>
             )}
 
             <Link href="/contact" className={secondaryLinkClass}>
-              Contact
+              {uiContent.actions.contact}
             </Link>
 
           </div>

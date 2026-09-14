@@ -1,3 +1,5 @@
+import { uiContent } from "@/content/ui.content";
+
 export default function Loading() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-surface-3 px-6 text-ink">
@@ -11,7 +13,7 @@ export default function Loading() {
           className="h-10 w-10 animate-spin rounded-full border-2 border-line-strong border-t-brand"
         />
 
-        <p className="text-sm text-ink-muted">Loading…</p>
+        <p className="text-sm text-ink-muted">{uiContent.status.loading}</p>
       </div>
     </div>
   );

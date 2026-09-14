@@ -1,5 +1,6 @@
 import PageShell from "@/components/ui/PageShell";
 import { formatDate } from "@/lib/markdown";
+import { uiContent } from "@/content/ui.content";
 
 export type LegalSection = {
   title: string;
@@ -34,7 +35,7 @@ export default function LegalPage({
       </h1>
 
       <p className="mt-6 text-sm text-zinc-400">
-        Last updated: <time dateTime={updated}>{formatDate(updated)}</time>
+        {uiContent.status.lastUpdated} <time dateTime={updated}>{formatDate(updated)}</time>
       </p>
 
       <p className="mt-8 text-pretty text-lg leading-9 text-ink-muted">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { uiContent } from "@/content/ui.content";
 import type { Product } from "@/data/products";
 
 type Props = {
@@ -44,7 +45,7 @@ export default function OfferingDetail({ product }: Props) {
               href={product.playstore}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${product.name} on ${product.button} (opens in a new tab)`}
+              aria-label={uiContent.actions.storeLabel(product.name, product.button)}
               className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-6 py-4 font-semibold transition hover:bg-brand-hover sm:w-auto"
             >
               {product.button}
@@ -64,7 +65,7 @@ export default function OfferingDetail({ product }: Props) {
             href="/contact"
             className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl border border-line-strong px-6 py-4 font-semibold transition hover:border-brand-mid sm:w-auto"
           >
-            Contact
+            {uiContent.actions.contact}
           </Link>
 
         </div>
@@ -74,7 +75,7 @@ export default function OfferingDetail({ product }: Props) {
             href={product.developmentVideo.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Watch devlog: ${product.developmentVideo.title} (opens in a new tab)`}
+            aria-label={uiContent.actions.watchDevlogLabel(product.developmentVideo.title)}
             className="group mt-10 flex max-w-xl items-center gap-4 rounded-2xl border border-line bg-card p-4 transition hover:border-brand sm:p-5"
           >
             <span
@@ -88,7 +89,7 @@ export default function OfferingDetail({ product }: Props) {
 
             <span className="min-w-0">
               <span className="block text-xs font-semibold uppercase tracking-[0.2em] text-brand-mid">
-                Watch Devlog
+                {uiContent.actions.watchDevlog}
               </span>
               <span className="mt-1 block text-pretty font-semibold text-ink">
                 {product.developmentVideo.title}

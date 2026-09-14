@@ -28,6 +28,7 @@ export interface ThemeColors {
   card: string;
   ink: string;
   inkMuted: string;
+  inkSubtle: string;
   line: string;
   lineStrong: string;
 }
@@ -39,6 +40,8 @@ export interface SiteConfig {
   slogan: string;
   description: string;
   url: string;
+  // Open Graph locale, e.g. "en_US"
+  locale: string;
   logo: {
     src: string;
     alt: string;
@@ -123,6 +126,7 @@ export const siteConfig: SiteConfig = {
     "Privacy-focused Android applications, indie games and innovative software.",
 
   url: "https://www.cipherrootsoftware.com",
+  locale: "en_US",
 
   logo: {
     src: "/logo/cipherroot-logo.webp",
@@ -180,6 +184,7 @@ export const siteConfig: SiteConfig = {
       card: "#18181b",
       ink: "#ffffff",
       inkMuted: "#a1a1aa",
+      inkSubtle: "#85858e",
       line: "#27272a",
       lineStrong: "#3f3f46",
     },

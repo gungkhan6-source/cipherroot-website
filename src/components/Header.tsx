@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/config/site.config";
+import { uiContent } from "@/content/ui.content";
 import type { NavigationConfig } from "@/config/navigation.config";
 
 type Props = {
@@ -13,8 +14,28 @@ type Props = {
 
 export default function Header({ nav, cta }: Props) {
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setOpen(false);
+
+  // Escape closes the open mobile menu and returns focus to its toggle, so
+  // keyboard focus is never left on a link that has just been removed.
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full border-b border-line bg-surface-0/80 backdrop-blur-xl">
@@ -42,7 +63,7 @@ export default function Header({ nav, cta }: Props) {
 
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label={uiContent.accessibility.mainNavigation} className="hidden items-center gap-8 lg:flex">
 
           {nav.map((item) => (
             <Link
@@ -68,11 +89,13 @@ export default function Header({ nav, cta }: Props) {
           )}
 
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
-            aria-controls="mobile-navigation"
-            aria-label={open ? "Close menu" : "Open menu"}
+            // The menu is only rendered while open, so it is only referenced then.
+            aria-controls={open ? "mobile-navigation" : undefined}
+            aria-label={open ? uiContent.accessibility.closeMenu : uiContent.accessibility.openMenu}
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line text-zinc-300 transition hover:border-brand-mid hover:text-brand-light sm:h-11 sm:w-11 lg:hidden"
           >
             {open ? (
@@ -112,7 +135,7 @@ export default function Header({ nav, cta }: Props) {
           className="border-t border-line bg-surface-0/95 backdrop-blur-xl lg:hidden"
         >
 
-          <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col px-6 py-6 sm:px-8">
+          <nav aria-label={uiContent.accessibility.mobileNavigation} className="mx-auto flex max-w-7xl flex-col px-6 py-6 sm:px-8">
 
             {nav.map((item) => (
               <Link

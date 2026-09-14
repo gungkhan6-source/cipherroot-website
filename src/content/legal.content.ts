@@ -1,6 +1,9 @@
 import { siteConfig } from "@/config/site.config";
 import { featuresConfig } from "@/config/features.config";
 
+// Display form of the site address used in the text, e.g. "example.com".
+const siteDomain = new URL(siteConfig.url).hostname.replace(/^www\./, "");
+
 export interface LegalSection {
   title: string;
   paragraphs: string[];
@@ -31,7 +34,7 @@ export const privacyPolicyContent: LegalPageContent = {
     "How CipherRoot Software collects, uses and protects information, including cookies, advertising and third-party services.",
   updated: "2026-09-14",
   intro:
-    "This policy explains what information is collected when you visit cipherrootsoftware.com, how it is used, who it is shared with, and the control you have over it.",
+    `This policy explains what information is collected when you visit ${siteDomain}, how it is used, who it is shared with, and the control you have over it.`,
   sections: [
     {
       title: "Introduction",
@@ -256,10 +259,10 @@ export const termsOfServiceContent: LegalPageContent = {
 export const cookiePolicyContent: LegalPageContent = {
   title: "Cookie Policy",
   metaDescription:
-    "Which cookies may be used on cipherrootsoftware.com, what they do, and how to control them.",
+    `Which cookies may be used on ${siteDomain}, what they do, and how to control them.`,
   updated: "2026-07-28",
   intro:
-    "This page explains which cookies may be used on cipherrootsoftware.com, what each type does, and how you can control them.",
+    `This page explains which cookies may be used on ${siteDomain}, what each type does, and how you can control them.`,
   sections: [
     {
       title: "What Cookies Are",

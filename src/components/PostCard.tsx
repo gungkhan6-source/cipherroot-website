@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Post } from "@/data/posts";
 import { formatDate } from "@/lib/markdown";
+import { uiContent } from "@/content/ui.content";
 
 type Props = {
   post: Post;
@@ -38,10 +39,10 @@ export default function PostCard({ post }: Props) {
           {post.excerpt}
         </p>
 
-        <p className="mt-6 flex flex-wrap items-center gap-2 text-sm text-zinc-500">
+        <p className="mt-6 flex flex-wrap items-center gap-2 text-sm text-ink-subtle">
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span aria-hidden="true">·</span>
-          <span>{post.readingMinutes} min read</span>
+          <span>{post.readingMinutes} {uiContent.status.minRead}</span>
         </p>
 
       </div>

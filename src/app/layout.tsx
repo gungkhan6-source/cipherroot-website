@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site.config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLd";
@@ -8,15 +8,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnalyticsScripts, { GoogleTagManagerNoscript } from "@/components/AnalyticsScripts";
 import { navigationConfig } from "@/config/navigation.config";
+import { uiContent } from "@/content/ui.content";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -58,7 +53,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    locale: "en_US",
+    locale: siteConfig.locale,
     type: "website",
   },
 
@@ -95,6 +90,7 @@ const themeVariables = `
     --color-card: ${siteConfig.theme.colors.card};
     --color-ink: ${siteConfig.theme.colors.ink};
     --color-ink-muted: ${siteConfig.theme.colors.inkMuted};
+    --color-ink-subtle: ${siteConfig.theme.colors.inkSubtle};
     --color-line: ${siteConfig.theme.colors.line};
     --color-line-strong: ${siteConfig.theme.colors.lineStrong};
   }
@@ -108,7 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={geistSans.variable}
     >
       <head>
         <style
@@ -137,7 +133,7 @@ export default function RootLayout({
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-brand focus:px-5 focus:py-3 focus:font-semibold focus:text-ink"
         >
-          Skip to main content
+          {uiContent.accessibility.skipToContent}
         </a>
 
         {adsenseClient && (

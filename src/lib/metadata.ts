@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site.config";
 
 /**
  * Builds a consistent metadata object for a page.
@@ -13,6 +14,11 @@ type PageMetadataInput = {
   description: string;
   path: string;
   image?: string;
+  /** Marks the page as an article (og:type "article") with its dates. */
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+  };
 };
 
 export function pageMetadata({
@@ -20,6 +26,7 @@ export function pageMetadata({
   description,
   path,
   image = "/opengraph-image",
+  article,
 }: PageMetadataInput): Metadata {
   return {
     title,
@@ -33,7 +40,16 @@ export function pageMetadata({
       title,
       description,
       url: path,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
       images: [image],
+      ...(article
+        ? {
+            type: "article",
+            publishedTime: article.publishedTime,
+            ...(article.modifiedTime ? { modifiedTime: article.modifiedTime } : {}),
+          }
+        : { type: "website" }),
     },
 
     twitter: {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { uiContent } from "@/content/ui.content";
 import type { PortfolioItem } from "@/types/catalog";
 
 type Props = {
@@ -46,10 +47,10 @@ export default function PortfolioCard({ project }: Props) {
       <div className="mt-8 flex flex-col gap-4 sm:mt-10 xl:flex-row xl:justify-center">
         <Link
           href={project.href}
-          aria-label={`Learn more about ${project.name}`}
+          aria-label={uiContent.actions.learnMoreAbout(project.name)}
           className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl border border-line-strong px-4 py-3 text-sm font-medium text-ink transition hover:border-brand hover:text-brand-light xl:w-auto xl:text-base"
         >
-          Learn More
+          {uiContent.actions.learnMore}
         </Link>
       </div>
 

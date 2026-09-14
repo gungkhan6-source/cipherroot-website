@@ -11,6 +11,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { articleJsonLd } from "@/lib/jsonLd";
 import { moduleVisibility } from "@/lib/modules";
 import { blogPageContent } from "@/content/pages.content";
+import { uiContent } from "@/content/ui.content";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -57,6 +58,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.excerpt,
     path: `/blog/${post.slug}`,
     image: post.cover,
+    article: {
+      publishedTime: post.date,
+      modifiedTime: post.updated,
+    },
   });
 }
 
@@ -122,7 +127,7 @@ export default async function BlogPage({ params }: Props) {
         <span aria-hidden="true">·</span>
         <time dateTime={post.date}>{formatDate(post.date)}</time>
         <span aria-hidden="true">·</span>
-        <span>{post.readingMinutes} min read</span>
+        <span>{post.readingMinutes} {uiContent.status.minRead}</span>
       </p>
 
       <Image
@@ -179,7 +184,7 @@ export default async function BlogPage({ params }: Props) {
           className="inline-flex items-center gap-2 text-brand-light transition hover:text-brand-mid"
         >
           <span aria-hidden="true">←</span>
-          Back to all articles
+          {uiContent.actions.backToArticles}
         </Link>
       </div>
 

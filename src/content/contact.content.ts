@@ -44,6 +44,8 @@ export interface ContactContent {
     whatsappTitle: string;
     whatsappLabel: string;
     addressTitle: string;
+    /** Follows the address in the Maps link's accessible name. */
+    mapsSuffix: string;
     appointmentTitle: string;
     appointmentLabel: string;
   };
@@ -96,6 +98,7 @@ export const contactContent: ContactContent = {
     whatsappTitle: "WhatsApp",
     whatsappLabel: "Chat on WhatsApp",
     addressTitle: "Address",
+    mapsSuffix: "on Google Maps",
     appointmentTitle: "Appointment",
     appointmentLabel: "Book an appointment",
   },

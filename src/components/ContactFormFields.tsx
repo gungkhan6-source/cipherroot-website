@@ -18,7 +18,7 @@ type Props = {
 };
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-line bg-card px-4 py-3 text-ink placeholder:text-zinc-500 disabled:cursor-not-allowed disabled:opacity-60";
+  "mt-2 w-full rounded-xl border border-line bg-card px-4 py-3 text-ink placeholder:text-ink-subtle disabled:cursor-not-allowed disabled:opacity-60";
 
 const labelClass = "block text-sm font-medium text-ink";
 
@@ -108,7 +108,7 @@ export default function ContactFormFields({ content: form, email, enabled }: Pro
             className={fieldClass}
           />
 
-          <p id="contact-name-hint" className="mt-2 text-xs text-zinc-500">
+          <p id="contact-name-hint" className="mt-2 text-xs text-ink-subtle">
             {form.nameHint}
           </p>
 
@@ -135,7 +135,7 @@ export default function ContactFormFields({ content: form, email, enabled }: Pro
             className={fieldClass}
           />
 
-          <p id="contact-email-hint" className="mt-2 text-xs text-zinc-500">
+          <p id="contact-email-hint" className="mt-2 text-xs text-ink-subtle">
             {form.emailHint}
           </p>
 
@@ -187,7 +187,7 @@ export default function ContactFormFields({ content: form, email, enabled }: Pro
           className={fieldClass}
         />
 
-        <p id="contact-message-hint" className="mt-2 text-xs text-zinc-500">
+        <p id="contact-message-hint" className="mt-2 text-xs text-ink-subtle">
           {form.messageHint}
         </p>
 

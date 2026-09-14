@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { uiContent } from "@/content/ui.content";
 import SectionTitle from "./SectionTitle";
 import Section from "./ui/Section";
 import { visibleProducts } from "@/lib/modules";
@@ -41,7 +42,7 @@ export default function DownloadSection({ content = homeContent.downloadCta }: P
                     href={product.playstore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${product.name} on ${product.button} (opens in a new tab)`}
+                    aria-label={uiContent.actions.storeLabel(product.name, product.button)}
                     className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:bg-brand-hover xl:w-auto xl:text-base"
                   >
                     {product.button}
@@ -50,10 +51,10 @@ export default function DownloadSection({ content = homeContent.downloadCta }: P
                   <>
                     <Link
                       href={product.href}
-                      aria-label={`Learn more about ${product.name}`}
+                      aria-label={uiContent.actions.learnMoreAbout(product.name)}
                       className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:bg-brand-hover xl:w-auto xl:text-base"
                     >
-                      Learn More
+                      {uiContent.actions.learnMore}
                     </Link>
 
                     <button
