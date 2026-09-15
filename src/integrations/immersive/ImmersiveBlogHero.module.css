@@ -1,0 +1,14 @@
+/*
+ * Blog hero additions on top of ImmersiveHero.module.css (layout, scroll
+ * range and fallback rules are shared). Only the static background differs:
+ * a warm indigo / coral glow matching the blog's editorial palette.
+ */
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 70% 45%, rgba(124, 108, 255, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 105%, rgba(255, 122, 89, 0.1) 0%, transparent 55%);
+}

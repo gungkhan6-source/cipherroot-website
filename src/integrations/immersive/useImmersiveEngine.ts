@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useSyncExternalStore, type RefObject } from "react";
-import type { EnginePalette, ImmersiveEngine, QualityTier } from "immersive-experience-engine";
+import type { EnginePalette, ExperiencePreset, ImmersiveEngine, QualityTier } from "immersive-experience-engine";
 
 /** Serializable engine settings, safe to pass from a Server Component. */
 export interface ImmersiveEngineSettings {
@@ -20,7 +20,20 @@ export interface ImmersiveEngineSettings {
   preset?: ImmersivePresetName;
 }
 
-export type ImmersivePresetName = "mindFormation" | "games";
+export type ImmersivePresetName = "mindFormation" | "games" | "blog";
+
+/**
+ * Each optional experience is its own package entry, loaded only by the page
+ * that uses it: the home page (mind formation) downloads the core alone.
+ */
+function loadPreset(preset: ImmersivePresetName | undefined): Promise<ExperiencePreset | undefined> {
+  if (preset === "games") return import("immersive-experience-engine/games").then((entry) => entry.gamesPreset);
+  if (preset === "blog") return import("immersive-experience-engine/blog").then((entry) => entry.blogPreset);
+  return Promise.resolve(undefined);
+}
+
+/** Presets with their own static illustration, shown by the engine in fallback. */
+const hasEngineFallback = (preset: ImmersivePresetName | undefined) => preset === "games" || preset === "blog";
 
 type DebugWindow = Window & { __immersiveEngine?: ImmersiveEngine };
 
@@ -58,9 +71,11 @@ function isWebGLAvailable(): boolean {
  *   visitors keep the static, server-rendered hero and never download the
  *   engine. Other fallbacks (software renderer, slow devices) stay with the
  *   engine's own tier detection.
- * - Exception: the games preset shows the engine's own neon-games fallback in
- *   those cases, so the engine is loaded with the forced "fallback" tier. It
- *   renders a static SVG only (no canvas, no WebGL context, no animation).
+ * - Exception: the games and blog presets show the engine's own illustration
+ *   (neon-games, editorial) in those cases, so the engine is loaded with the
+ *   forced "fallback" tier. It renders a static SVG only (no canvas, no WebGL
+ *   context, no animation).
+ * - Presets load from their own entries (`/games`, `/blog`) next to the core.
  * - The closest `[data-immersive-hero]` element is the scroll target; its
  *   `[data-immersive-avoid]` descendants (headline, copy, CTAs) are kept clear.
  * - State is mirrored to the hero as `data-immersive-status` (static, loading,
@@ -101,7 +116,7 @@ export function useImmersiveEngine(
       hero?.setAttribute("data-immersive-status", "static");
       hero?.setAttribute("data-immersive-tier", "fallback");
       hero?.setAttribute("data-immersive-reason", staticReason);
-      if (preset !== "games") return clearHero;
+      if (!hasEngineFallback(preset)) return clearHero;
     }
 
     const palette = JSON.parse(paletteKey) as Partial<EnginePalette> | null;
@@ -110,8 +125,8 @@ export function useImmersiveEngine(
 
     if (!staticReason) hero?.setAttribute("data-immersive-status", "loading");
 
-    import("immersive-experience-engine")
-      .then(({ createImmersiveEngine, gamesPreset }) => {
+    Promise.all([import("immersive-experience-engine"), loadPreset(preset)])
+      .then(([{ createImmersiveEngine }, experience]) => {
         if (cancelled) return;
 
         engine = createImmersiveEngine({
@@ -122,7 +137,7 @@ export function useImmersiveEngine(
           introDuration,
           interactive,
           palette: palette ?? undefined,
-          preset: preset === "games" ? gamesPreset : undefined,
+          preset: experience,
           onTierChange: (next) => hero?.setAttribute("data-immersive-tier", next),
         });
 
