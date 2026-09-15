@@ -12,6 +12,7 @@ import { articleJsonLd } from "@/lib/jsonLd";
 import { moduleVisibility } from "@/lib/modules";
 import { blogPageContent } from "@/content/pages.content";
 import { uiContent } from "@/content/ui.content";
+import { ImmersiveBlogHero } from "@/integrations/immersive";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -73,6 +74,41 @@ export default async function BlogPage({ params }: Props) {
   }
 
   if (!slug || slug.length === 0) {
+    // Immersive hero: it holds the page title (h1), the list gets an h2.
+    if (moduleVisibility.immersiveBlog) {
+      return (
+        <main id="main-content" className="bg-surface-3 text-ink">
+
+          <ImmersiveBlogHero />
+
+          <section
+            id="articles"
+            aria-labelledby="articles-title"
+            className="mx-auto max-w-7xl scroll-mt-20 px-6 pt-20 pb-20 sm:px-8 sm:pt-28 sm:pb-28"
+          >
+
+            <h2
+              id="articles-title"
+              className="mb-12 text-center text-balance text-3xl font-bold leading-tight tracking-tight text-ink sm:mb-16 sm:text-4xl md:text-5xl"
+            >
+              {blogPageContent.listTitle}
+            </h2>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard
+                  key={post.slug}
+                  post={post}
+                />
+              ))}
+            </div>
+
+          </section>
+
+        </main>
+      );
+    }
+
     return (
       <PageShell>
 

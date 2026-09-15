@@ -36,3 +36,16 @@ export const immersiveGamesConfig: ImmersiveConfig = {
     preset: "games",
   },
 };
+
+/**
+ * Blog listing hero: the engine's "Ink & Signal" blog preset (page, discovery
+ * lens, media orbit, idea globe, page) with its own intro timing and palette.
+ */
+export const immersiveBlogConfig: ImmersiveConfig = {
+  scrollLength: "400svh",
+  engine: {
+    tier: "auto",
+    interactive: true,
+    preset: "blog",
+  },
+};

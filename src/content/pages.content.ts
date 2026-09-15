@@ -55,7 +55,17 @@ export const portfolioPageContent: ListingPageContent = {
   description: "A selection of projects we have worked on.",
 };
 
-export const blogPageContent: ListingPageContent = {
+export interface BlogPageContent extends ListingPageContent {
+  /** Immersive blog hero CTA; jumps to the article list below the hero. */
+  heroCta: {
+    label: string;
+    href: string;
+  };
+  /** Heading of the article list when the immersive hero holds the page title. */
+  listTitle: string;
+}
+
+export const blogPageContent: BlogPageContent = {
   metaTitle: "Blog",
   metaDescription:
     "News, development updates, Android applications, indie games and technology articles.",
@@ -63,4 +73,9 @@ export const blogPageContent: ListingPageContent = {
   title: "Insights & Development",
   description:
     "Technical articles, development diaries and engineering notes from CipherRoot Software.",
+  heroCta: {
+    label: "Read articles",
+    href: "#articles",
+  },
+  listTitle: "All articles",
 };
