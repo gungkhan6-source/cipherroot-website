@@ -12,7 +12,15 @@ export interface ImmersiveEngineSettings {
   /** React to the pointer. */
   interactive?: boolean;
   palette?: Partial<EnginePalette>;
+  /**
+   * Experience preset by name (the preset objects themselves hold functions,
+   * so they cannot cross the server/client boundary). Omitted: the engine's
+   * default mind formation.
+   */
+  preset?: ImmersivePresetName;
 }
+
+export type ImmersivePresetName = "mindFormation" | "games";
 
 type DebugWindow = Window & { __immersiveEngine?: ImmersiveEngine };
 
@@ -50,6 +58,9 @@ function isWebGLAvailable(): boolean {
  *   visitors keep the static, server-rendered hero and never download the
  *   engine. Other fallbacks (software renderer, slow devices) stay with the
  *   engine's own tier detection.
+ * - Exception: the games preset shows the engine's own neon-games fallback in
+ *   those cases, so the engine is loaded with the forced "fallback" tier. It
+ *   renders a static SVG only (no canvas, no WebGL context, no animation).
  * - The closest `[data-immersive-hero]` element is the scroll target; its
  *   `[data-immersive-avoid]` descendants (headline, copy, CTAs) are kept clear.
  * - State is mirrored to the hero as `data-immersive-status` (static, loading,
@@ -61,7 +72,7 @@ export function useImmersiveEngine(
   containerRef: RefObject<HTMLElement | null>,
   settings: ImmersiveEngineSettings = {},
 ): void {
-  const { tier = "auto", introDuration, interactive = true } = settings;
+  const { tier = "auto", introDuration, interactive = true, preset } = settings;
   // Compared by value, so a new palette object with the same colors does not remount.
   const paletteKey = JSON.stringify(settings.palette ?? null);
   // Switching the OS setting while the page is open remounts accordingly.
@@ -90,31 +101,32 @@ export function useImmersiveEngine(
       hero?.setAttribute("data-immersive-status", "static");
       hero?.setAttribute("data-immersive-tier", "fallback");
       hero?.setAttribute("data-immersive-reason", staticReason);
-      return clearHero;
+      if (preset !== "games") return clearHero;
     }
 
     const palette = JSON.parse(paletteKey) as Partial<EnginePalette> | null;
     let engine: ImmersiveEngine | null = null;
     let cancelled = false;
 
-    hero?.setAttribute("data-immersive-status", "loading");
+    if (!staticReason) hero?.setAttribute("data-immersive-status", "loading");
 
     import("immersive-experience-engine")
-      .then(({ createImmersiveEngine }) => {
+      .then(({ createImmersiveEngine, gamesPreset }) => {
         if (cancelled) return;
 
         engine = createImmersiveEngine({
           container,
           scrollTarget: hero ?? container,
           avoid: hero ? Array.from(hero.querySelectorAll("[data-immersive-avoid]")) : [],
-          tier,
+          tier: staticReason ? "fallback" : tier,
           introDuration,
           interactive,
           palette: palette ?? undefined,
+          preset: preset === "games" ? gamesPreset : undefined,
           onTierChange: (next) => hero?.setAttribute("data-immersive-tier", next),
         });
 
-        hero?.setAttribute("data-immersive-status", "ready");
+        if (!staticReason) hero?.setAttribute("data-immersive-status", "ready");
 
         if (process.env.NODE_ENV !== "production") {
           (window as DebugWindow).__immersiveEngine = engine;
@@ -141,5 +153,5 @@ export function useImmersiveEngine(
       engine = null;
       clearHero();
     };
-  }, [containerRef, tier, introDuration, interactive, paletteKey, reducedMotion]);
+  }, [containerRef, tier, introDuration, interactive, paletteKey, reducedMotion, preset]);
 }

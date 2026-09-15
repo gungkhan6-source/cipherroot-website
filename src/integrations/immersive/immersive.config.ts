@@ -22,3 +22,17 @@ export const immersiveConfig: ImmersiveConfig = {
     interactive: true,
   },
 };
+
+/**
+ * Games listing hero: the engine's games preset (arcade, controller,
+ * handheld, pixel world, arcade). Four morph steps need a longer scroll range
+ * than the mind formation; the preset's own intro timing and palette are used.
+ */
+export const immersiveGamesConfig: ImmersiveConfig = {
+  scrollLength: "420svh",
+  engine: {
+    tier: "auto",
+    interactive: true,
+    preset: "games",
+  },
+};

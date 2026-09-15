@@ -30,6 +30,8 @@ export const moduleVisibility = {
   appointment: featuresConfig.appointment && appointmentUrl !== undefined,
   // Replaces the standard hero; no content requirement (it reuses the hero copy).
   immersiveHero: featuresConfig.immersiveExperience,
+  // Games listing hero, same feature; only while there are games to list.
+  immersiveGames: featuresConfig.immersiveExperience && games.length > 0,
 };
 
 const moduleForKind: Record<ProductKind, "apps" | "games"> = {
