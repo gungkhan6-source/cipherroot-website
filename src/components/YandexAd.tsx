@@ -24,15 +24,15 @@ export default function YandexAd() {
 
     window.yaContextCb.push(() => {
       window.Ya?.Context?.AdvManager?.render({
-        blockId: "R-A-20041549-1",
-        renderTo: "yandex_rtb_R-A-20041549-1",
+        blockId: "R-A-20030613-1",
+        renderTo: "yandex_rtb_R-A-20030613-1",
       });
     });
   }, []);
 
   return (
     <div
-      id="yandex_rtb_R-A-20041549-1"
+      id="yandex_rtb_R-A-20030613-1"
       className="flex w-full justify-center"
     />
   );
