@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import DownloadSection from "../components/DownloadSection";
 import Hero from "../components/Hero";
 import YandexAd from "../components/YandexAd";
+import YandexInImageAd from "../components/YandexInImageAd";
 import { ImmersiveHero } from "@/integrations/immersive";
 import Stats from "../components/Stats";
 import Products from "../components/Products";
@@ -20,15 +21,14 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function Home() {
   return (
     <main id="main-content">
       {moduleVisibility.immersiveHero ? <ImmersiveHero /> : <Hero />}
-      
 
       <YandexAd />
-       
+      <YandexInImageAd />
+
       {moduleVisibility.stats && <Stats />}
       {moduleVisibility.services && <ServicesSection />}
       {visibleProducts.length > 0 && <Products />}
