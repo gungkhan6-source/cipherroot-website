@@ -111,6 +111,19 @@ export default function RootLayout({
           id="theme-bridge"
           dangerouslySetInnerHTML={{ __html: themeVariables }}
         />
+        {/* Yandex RTB */}
+        <Script
+          id="yandex-rtb-init"
+          strategy="beforeInteractive"
+        >
+          {`window.yaContextCb = window.yaContextCb || [];`}
+        </Script>
+
+        <Script
+          id="yandex-rtb-loader"
+          src="https://yandex.ru/ads/system/context.js"
+          strategy="beforeInteractive"
+        />
       </head>
       <body>
         <GoogleTagManagerNoscript />
