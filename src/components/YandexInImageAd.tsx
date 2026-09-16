@@ -4,8 +4,12 @@ import { useEffect } from "react";
 
 export default function YandexInImageAd() {
   useEffect(() => {
-    const renderInImage = () => {
-      const images = Array.from(document.querySelectorAll("img"));
+    const run = () => {
+      const images = Array.from(
+        document.querySelectorAll<HTMLImageElement>("img")
+      ).filter(
+        (image) => image.width >= 320 && image.height >= 190
+      );
 
       images.forEach((image) => {
         image.id =
@@ -23,13 +27,13 @@ export default function YandexInImageAd() {
     };
 
     if (document.readyState === "complete") {
-      renderInImage();
+      run();
     } else {
-      window.addEventListener("load", renderInImage, { once: true });
+      window.addEventListener("load", run, { once: true });
     }
 
     return () => {
-      window.removeEventListener("load", renderInImage);
+      window.removeEventListener("load", run);
     };
   }, []);
 
