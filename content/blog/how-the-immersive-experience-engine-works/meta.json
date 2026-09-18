@@ -1,0 +1,11 @@
+{
+  "title": "How the Immersive Experience Engine Works",
+  "slug": "how-the-immersive-experience-engine-works",
+  "date": "2026-09-18",
+  "category": "Web & Browser",
+  "author": "CipherRoot Software",
+  "cover": "/blog/how-the-immersive-experience-engine-works.avif",
+  "coverAlt": "Diagram of the Immersive Experience Engine’s layers: UI, interaction layer, visual effects, content and performance management",
+  "excerpt": "Explore the architecture behind the Immersive Experience Engine, from UI and interaction layers to visual effects, content systems, and performance management.",
+  "order": -70
+}

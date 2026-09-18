@@ -111,7 +111,7 @@ export const offerings: CatalogItem[] = [
     image: "/images/inferno-pool.png",
     seo: {
       description:
-        "Inferno Pool is a real-time multiplayer 8-ball pool game with a live global chat, private rooms, bot matches and responsive mobile controls. Coming soon to Google Play, CrazyGames, PixiDust and Facebook Instant Games.",
+        "Inferno Pool is a real-time multiplayer 8-ball pool game with a live global chat, private rooms, bot matches and responsive mobile controls. Coming soon to Google Play, Yandex Games, PixiDust and Facebook Instant Games.",
       image: "/images/inferno-pool/inferno-pool-gameplay.webp",
     },
     featured: false,
@@ -126,7 +126,7 @@ export const offerings: CatalogItem[] = [
       },
       {
         platform: "web",
-        label: "CrazyGames",
+        label: "Yandex Games",
         status: "coming-soon",
         ctaLabel: "Coming Soon",
       },

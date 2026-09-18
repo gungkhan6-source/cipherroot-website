@@ -22,14 +22,14 @@ export default function PlatformChips({ releases, comingSoon, label, size = "com
   return (
     <ul
       aria-label={label}
-      className={`${large ? "grid gap-3 sm:grid-cols-2" : "grid gap-2"} ${className}`}
+      className={`${large ? "grid auto-rows-fr gap-3 sm:grid-cols-2" : "grid auto-rows-fr gap-2"} ${className}`}
     >
       {releases.map((release) => {
         const live = release.status === "released" && release.storeUrl;
         const status = live ? (release.ctaLabel ?? release.label) : comingSoon;
         const body = (
           <>
-            <span className={`font-semibold text-ink ${large ? "text-base" : "text-xs"}`}>{release.label}</span>
+            <span className={`font-semibold text-ink ${large ? "text-sm lg:text-base" : "text-xs"}`}>{release.label}</span>
             <span
               className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full font-medium ${
                 live ? "bg-success/15 text-green-400" : "bg-orange-500/10 text-orange-300"
@@ -40,7 +40,7 @@ export default function PlatformChips({ releases, comingSoon, label, size = "com
             </span>
           </>
         );
-        const box = `flex items-center justify-between gap-3 rounded-2xl border ${
+        const box = `flex h-full items-center justify-between gap-3 rounded-2xl border ${
           large ? "border-orange-500/20 bg-black/40 px-5 py-4" : "border-line bg-black/30 px-3 py-2"
         }`;
 

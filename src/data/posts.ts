@@ -9,6 +9,8 @@ export type Post = {
   category: string;
   author: string;
   cover: string;
+  /** Description of the cover image; the title is used when missing. */
+  coverAlt?: string;
   excerpt: string;
   order: number;
   content: string;

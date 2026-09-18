@@ -1,15 +1,20 @@
 export type Block =
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  | { type: "image"; src: string; alt: string; width: number; height: number };
+
+/** A run of inline text; `strong` marks a **bold** span. */
+export type Inline = { text: string; strong: boolean };
 
 /**
  * Minimal markdown parser.
  *
- * The blog content only uses ATX headings, plain paragraphs and simple
- * unordered lists — no links, emphasis or code fences — so a full markdown
- * library would be unnecessary weight. If richer syntax is ever needed,
- * replace this file.
+ * The blog content only uses ATX headings, plain paragraphs, simple
+ * unordered lists, **bold** spans and standalone images written as
+ * `![alt](/path.avif "1536x1024")` (the size avoids layout shift) — no links
+ * or code fences — so a full markdown library would be unnecessary weight.
+ * If richer syntax is ever needed, replace this file.
  *
  * Heading levels are shifted down one step so the page <h1> stays unique.
  */
@@ -28,6 +33,20 @@ export function parseMarkdown(source: string): Block[] {
 
     if (line === "") {
       flush();
+      continue;
+    }
+
+    const image = /^!\[([^\]]*)\]\((\S+)\s+"(\d+)x(\d+)"\)$/.exec(line);
+
+    if (image) {
+      flush();
+      blocks.push({
+        type: "image",
+        alt: image[1],
+        src: image[2],
+        width: Number(image[3]),
+        height: Number(image[4]),
+      });
       continue;
     }
 
@@ -67,6 +86,23 @@ export function parseMarkdown(source: string): Block[] {
   flush();
 
   return blocks;
+}
+
+/** Splits text into plain and **bold** runs; unmatched "**" stays literal. */
+export function parseInline(text: string): Inline[] {
+  const parts: Inline[] = [];
+  const pattern = /\*\*(.+?)\*\*/g;
+  let last = 0;
+
+  for (const match of text.matchAll(pattern)) {
+    if (match.index > last) parts.push({ text: text.slice(last, match.index), strong: false });
+    parts.push({ text: match[1], strong: true });
+    last = match.index + match[0].length;
+  }
+
+  if (last < text.length) parts.push({ text: text.slice(last), strong: false });
+
+  return parts;
 }
 
 export function formatDate(iso: string): string {

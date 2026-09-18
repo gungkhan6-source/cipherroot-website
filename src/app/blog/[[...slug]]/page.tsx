@@ -6,7 +6,7 @@ import PageShell from "@/components/ui/PageShell";
 import SectionTitle from "@/components/SectionTitle";
 import PostCard from "@/components/PostCard";
 import { posts, getPost } from "@/data/posts";
-import { parseMarkdown, formatDate } from "@/lib/markdown";
+import { parseInline, parseMarkdown, formatDate } from "@/lib/markdown";
 import { pageMetadata } from "@/lib/metadata";
 import { articleJsonLd } from "@/lib/jsonLd";
 import { moduleVisibility } from "@/lib/modules";
@@ -17,6 +17,17 @@ import { ImmersiveBlogHero } from "@/integrations/immersive";
 type Props = {
   params: Promise<{ slug?: string[] }>;
 };
+
+/** Paragraph, list and heading text with its **bold** spans. */
+function InlineText({ text }: { text: string }) {
+  return parseInline(text).map((part, index) =>
+    part.strong ? (
+      <strong key={index} className="font-semibold text-ink">{part.text}</strong>
+    ) : (
+      part.text
+    ),
+  );
+}
 
 /**
  * /blog (listing) and /blog/[slug] (post) in one optional catch-all route,
@@ -168,7 +179,7 @@ export default async function BlogPage({ params }: Props) {
 
       <Image
         src={post.cover}
-        alt={post.title}
+        alt={post.coverAlt ?? post.title}
         width={1200}
         height={675}
         sizes="(min-width: 896px) 896px, 100vw"
@@ -184,23 +195,33 @@ export default async function BlogPage({ params }: Props) {
                 key={index}
                 className="mt-12 text-balance text-2xl font-bold tracking-tight sm:text-3xl"
               >
-                {block.text}
+                <InlineText text={block.text} />
               </h2>
             ) : (
               <h3
                 key={index}
                 className="mt-10 text-balance text-xl font-semibold sm:text-2xl"
               >
-                {block.text}
+                <InlineText text={block.text} />
               </h3>
             )
+          ) : block.type === "image" ? (
+            <Image
+              key={index}
+              src={block.src}
+              alt={block.alt}
+              width={block.width}
+              height={block.height}
+              sizes="(min-width: 896px) 896px, 100vw"
+              className="mt-10 h-auto w-full rounded-3xl border border-line"
+            />
           ) : block.type === "list" ? (
             <ul
               key={index}
               className="mt-6 list-disc space-y-2 pl-6 text-pretty leading-8 text-ink-muted"
             >
               {block.items.map((item, itemIndex) => (
-                <li key={itemIndex}>{item}</li>
+                <li key={itemIndex}><InlineText text={item} /></li>
               ))}
             </ul>
           ) : (
@@ -208,7 +229,7 @@ export default async function BlogPage({ params }: Props) {
               key={index}
               className="mt-6 text-pretty leading-8 text-ink-muted"
             >
-              {block.text}
+              <InlineText text={block.text} />
             </p>
           ),
         )}

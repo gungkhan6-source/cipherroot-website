@@ -15,7 +15,7 @@ export default function PostCard({ post }: Props) {
       <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
         <Image
           src={post.cover}
-          alt={post.title}
+          alt={post.coverAlt ?? post.title}
           width={800}
           height={450}
           sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
