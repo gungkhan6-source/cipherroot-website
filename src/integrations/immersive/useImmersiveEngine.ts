@@ -20,7 +20,7 @@ export interface ImmersiveEngineSettings {
   preset?: ImmersivePresetName;
 }
 
-export type ImmersivePresetName = "mindFormation" | "games" | "blog";
+export type ImmersivePresetName = "mindFormation" | "games" | "blog" | "apps";
 
 /**
  * Each optional experience is its own package entry, loaded only by the page
@@ -29,11 +29,13 @@ export type ImmersivePresetName = "mindFormation" | "games" | "blog";
 function loadPreset(preset: ImmersivePresetName | undefined): Promise<ExperiencePreset | undefined> {
   if (preset === "games") return import("immersive-experience-engine/games").then((entry) => entry.gamesPreset);
   if (preset === "blog") return import("immersive-experience-engine/blog").then((entry) => entry.blogPreset);
+  if (preset === "apps") return import("immersive-experience-engine/apps").then((entry) => entry.appsPreset);
   return Promise.resolve(undefined);
 }
 
 /** Presets with their own static illustration, shown by the engine in fallback. */
-const hasEngineFallback = (preset: ImmersivePresetName | undefined) => preset === "games" || preset === "blog";
+const hasEngineFallback = (preset: ImmersivePresetName | undefined) =>
+  preset === "games" || preset === "blog" || preset === "apps";
 
 type DebugWindow = Window & { __immersiveEngine?: ImmersiveEngine };
 
@@ -71,11 +73,12 @@ function isWebGLAvailable(): boolean {
  *   visitors keep the static, server-rendered hero and never download the
  *   engine. Other fallbacks (software renderer, slow devices) stay with the
  *   engine's own tier detection.
- * - Exception: the games and blog presets show the engine's own illustration
- *   (neon-games, editorial) in those cases, so the engine is loaded with the
- *   forced "fallback" tier. It renders a static SVG only (no canvas, no WebGL
- *   context, no animation).
- * - Presets load from their own entries (`/games`, `/blog`) next to the core.
+ * - Exception: the games, blog and apps presets show the engine's own
+ *   illustration (neon-games, editorial, app-nexus) in those cases, so the
+ *   engine is loaded with the forced "fallback" tier. It renders a static SVG
+ *   only (no canvas, no WebGL context, no animation).
+ * - Presets load from their own entries (`/games`, `/blog`, `/apps`) next to
+ *   the core.
  * - The closest `[data-immersive-hero]` element is the scroll target; its
  *   `[data-immersive-avoid]` descendants (headline, copy, CTAs) are kept clear.
  * - State is mirrored to the hero as `data-immersive-status` (static, loading,

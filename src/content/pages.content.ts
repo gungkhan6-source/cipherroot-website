@@ -6,13 +6,28 @@ export interface ListingPageContent {
   description: string;
 }
 
-export const appsPageContent: ListingPageContent = {
+export interface AppsPageContent extends ListingPageContent {
+  /** Immersive apps hero CTA; jumps to the app list below the hero. */
+  heroCta: {
+    label: string;
+    href: string;
+  };
+  /** Heading of the app list when the immersive hero holds the page title. */
+  listTitle: string;
+}
+
+export const appsPageContent: AppsPageContent = {
   metaTitle: "Applications",
   metaDescription:
     "Explore CipherRoot Android applications, including Gunner DNS and NovaRec Studio.",
   badge: "Products",
   title: "Applications",
   description: "Explore CipherRoot Android Applications.",
+  heroCta: {
+    label: "Explore apps",
+    href: "#apps-list",
+  },
+  listTitle: "All apps",
 };
 
 export interface GamesPageContent extends ListingPageContent {

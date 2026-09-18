@@ -49,3 +49,18 @@ export const immersiveBlogConfig: ImmersiveConfig = {
     preset: "blog",
   },
 };
+
+/**
+ * Apps listing hero: the engine's "App Nexus" preset (digital globe, global
+ * mesh, human interface with its flock, app nexus, digital globe) with its own
+ * intro timing and palette. Four morph steps over a slightly longer scroll
+ * range than games, so the flock scene has room to be read.
+ */
+export const immersiveAppsConfig: ImmersiveConfig = {
+  scrollLength: "480svh",
+  engine: {
+    tier: "auto",
+    interactive: true,
+    preset: "apps",
+  },
+};

@@ -6,6 +6,13 @@
 export { default as ImmersiveHero } from "./ImmersiveHero";
 export { default as ImmersiveGamesHero } from "./ImmersiveGamesHero";
 export { default as ImmersiveBlogHero } from "./ImmersiveBlogHero";
+export { default as ImmersiveAppsHero } from "./ImmersiveAppsHero";
 export { default as ImmersiveStage } from "./ImmersiveStage";
 export { useImmersiveEngine, type ImmersiveEngineSettings, type ImmersivePresetName } from "./useImmersiveEngine";
-export { immersiveBlogConfig, immersiveConfig, immersiveGamesConfig, type ImmersiveConfig } from "./immersive.config";
+export {
+  immersiveAppsConfig,
+  immersiveBlogConfig,
+  immersiveConfig,
+  immersiveGamesConfig,
+  type ImmersiveConfig,
+} from "./immersive.config";
