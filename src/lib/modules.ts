@@ -34,6 +34,8 @@ export const moduleVisibility = {
   immersiveGames: featuresConfig.immersiveExperience && games.length > 0,
   // Blog listing hero, same feature; only while there are posts to list.
   immersiveBlog: featuresConfig.immersiveExperience && posts.length > 0,
+  // Apps listing hero, same feature; only while there are apps to list.
+  immersiveApps: featuresConfig.immersiveExperience && apps.length > 0,
 };
 
 const moduleForKind: Record<ProductKind, "apps" | "games"> = {

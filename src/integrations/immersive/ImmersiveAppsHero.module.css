@@ -1,0 +1,14 @@
+/*
+ * Apps hero additions on top of ImmersiveHero.module.css (layout, scroll
+ * range and fallback rules are shared). Only the static background differs:
+ * a teal / rose aurora glow matching the app nexus palette.
+ */
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 70% 45%, rgba(14, 124, 134, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 105%, rgba(255, 107, 154, 0.1) 0%, transparent 55%);
+}
