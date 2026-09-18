@@ -3,6 +3,7 @@ import DownloadSection from "../components/DownloadSection";
 import Hero from "../components/Hero";
 import YandexAd from "../components/YandexAd";
 import YandexInImageAd from "../components/YandexInImageAd";
+import YandexFloorAd from "../components/YandexFloorAd";
 import { ImmersiveHero } from "@/integrations/immersive";
 import Stats from "../components/Stats";
 import Products from "../components/Products";
@@ -28,6 +29,7 @@ export default function Home() {
 
       <YandexAd />
       <YandexInImageAd />
+      <YandexFloorAd />
 
       {moduleVisibility.stats && <Stats />}
       {moduleVisibility.services && <ServicesSection />}
