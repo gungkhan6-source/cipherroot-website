@@ -105,42 +105,42 @@ export const offerings: CatalogItem[] = [
     category: "game",
     tagline: "Online Multiplayer Pool Game",
     description:
-      "An online multiplayer pool game featuring real-time gameplay, in-game chat, smooth physics and fast-paced arcade action.",
+      "An online multiplayer 8-ball pool game with real-time gameplay, in-game chat, responsive controls and fast-paced matches.",
     longDescription:
       "Inferno Pool is an online multiplayer pool game currently in development. It combines real-time multiplayer matches, an in-game chat system, smooth ball physics and competitive arcade-style 8-ball gameplay. Releases on web game portals and mobile platforms are planned.",
     image: "/images/inferno-pool.png",
+    seo: {
+      description:
+        "Inferno Pool is a real-time multiplayer 8-ball pool game with a live global chat, private rooms, bot matches and responsive mobile controls. Coming soon to Google Play, CrazyGames, PixiDust and Facebook Instant Games.",
+      image: "/images/inferno-pool/inferno-pool-gameplay.webp",
+    },
     featured: false,
     href: "/games/inferno-pool",
+    // None of these is released yet: no store URLs until a platform is live.
     releases: [
       {
-        platform: "web",
-        label: "Yandex Games",
+        platform: "android",
+        label: "Google Play",
         status: "coming-soon",
-        ctaLabel: "Yandex Games",
+        ctaLabel: "Coming Soon",
       },
       {
         platform: "web",
         label: "CrazyGames",
         status: "coming-soon",
-        ctaLabel: "CrazyGames",
+        ctaLabel: "Coming Soon",
       },
       {
         platform: "web",
-        label: "Pixi / Pixidus",
+        label: "PixiDust",
         status: "coming-soon",
-        ctaLabel: "Pixi",
-      },
-      {
-        platform: "android",
-        label: "Google Play",
-        status: "coming-soon",
-        ctaLabel: "Google Play",
+        ctaLabel: "Coming Soon",
       },
       {
         platform: "web",
-        label: "Facebook Games",
+        label: "Facebook Instant Games",
         status: "coming-soon",
-        ctaLabel: "Facebook Games",
+        ctaLabel: "Coming Soon",
       },
     ],
   },

@@ -43,7 +43,7 @@ export interface GamesPageContent extends ListingPageContent {
 export const gamesPageContent: GamesPageContent = {
   metaTitle: "Indie Games",
   metaDescription:
-    "Explore indie games currently in development at CipherRoot Software.",
+    "Explore indie games in development at CipherRoot Software, including Inferno Pool, a real-time multiplayer 8-ball pool game with a live global chat.",
   badge: "Games",
   title: "Indie Games",
   description: "Explore our indie games currently in development.",

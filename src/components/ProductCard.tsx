@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { uiContent } from "@/content/ui.content";
 import type { Product } from "@/data/products";
+import type { PlatformRelease } from "@/types/catalog";
+import PlatformChips from "@/components/games/PlatformChips";
 
 /**
  * Only the fields the card renders. Any offering (app, game, SaaS, service…)
@@ -12,11 +14,25 @@ export type ProductCardItem = Pick<
   "name" | "image" | "status" | "description" | "href" | "button" | "playstore"
 >;
 
-type Props = {
-  app: ProductCardItem;
+/**
+ * Optional per-platform availability for an offering released on several
+ * platforms. When given, the card shows a badge and a chip per platform
+ * instead of the single status and store button, and links to a showcase.
+ */
+export type ProductCardPlatforms = {
+  badge: string;
+  releases: PlatformRelease[];
+  comingSoon: string;
+  label: string;
+  showcase: { href: string; label: string };
 };
 
-export default function ProductCard({ app }: Props) {
+type Props = {
+  app: ProductCardItem;
+  platforms?: ProductCardPlatforms;
+};
+
+export default function ProductCard({ app, platforms }: Props) {
   const available = app.status === "Available";
 
   return (
@@ -38,21 +54,37 @@ export default function ProductCard({ app }: Props) {
       </h2>
 
       <div className="mt-4 flex justify-center">
-        <span
-          className={`inline-flex items-center gap-2 rounded-full px-4 py-1 text-sm font-medium ${
-            available
-              ? "bg-success/15 text-green-400"
-              : "bg-warning/15 text-yellow-400"
-          }`}
-        >
-          <span aria-hidden="true">●</span>
-          {app.status}
-        </span>
+        {platforms ? (
+          <span className="inline-flex items-center gap-2 rounded-full bg-success/15 px-4 py-1 text-sm font-medium text-green-400">
+            <span aria-hidden="true">●</span>
+            {platforms.badge}
+          </span>
+        ) : (
+          <span
+            className={`inline-flex items-center gap-2 rounded-full px-4 py-1 text-sm font-medium ${
+              available
+                ? "bg-success/15 text-green-400"
+                : "bg-warning/15 text-yellow-400"
+            }`}
+          >
+            <span aria-hidden="true">●</span>
+            {app.status}
+          </span>
+        )}
       </div>
 
       <p className="mt-6 flex-1 text-center text-base leading-8 text-ink-muted">
         {app.description}
       </p>
+
+      {platforms && (
+        <PlatformChips
+          releases={platforms.releases}
+          comingSoon={platforms.comingSoon}
+          label={platforms.label}
+          className="mt-6"
+        />
+      )}
 
       <div className="mt-8 flex flex-col gap-4 sm:mt-10 xl:flex-row xl:justify-center">
 
@@ -64,7 +96,14 @@ export default function ProductCard({ app }: Props) {
           {uiContent.actions.learnMore}
         </Link>
 
-        {app.playstore ? (
+        {platforms ? (
+          <a
+            href={platforms.showcase.href}
+            className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-orange-600 px-4 py-3 text-sm font-medium text-ink transition hover:bg-orange-500 xl:w-auto xl:text-base"
+          >
+            {platforms.showcase.label}
+          </a>
+        ) : app.playstore ? (
           <a
             href={app.playstore}
             target="_blank"

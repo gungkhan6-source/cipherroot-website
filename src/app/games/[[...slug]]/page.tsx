@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageShell from "@/components/ui/PageShell";
 import SectionTitle from "@/components/SectionTitle";
-import ProductCard from "@/components/ProductCard";
+import ProductCard, { type ProductCardPlatforms } from "@/components/ProductCard";
+import InfernoPoolShowcase from "@/components/games/InfernoPoolShowcase";
+import InfernoPoolDetail from "@/components/games/InfernoPoolDetail";
 import OfferingDetail from "@/components/OfferingDetail";
 import { games } from "@/data/products";
+import { digitalProducts } from "@/data/offerings";
 import { pageMetadata } from "@/lib/metadata";
 import { moduleVisibility } from "@/lib/modules";
 import { gamesPageContent } from "@/content/pages.content";
+import { infernoPoolContent } from "@/content/infernoPool.content";
 import { ImmersiveGamesHero } from "@/integrations/immersive";
 
 type Props = {
@@ -28,6 +32,22 @@ export function generateStaticParams() {
   }
 
   return [{ slug: [] }, ...games.map((game) => ({ slug: [game.slug] }))];
+}
+
+// Inferno Pool is released on several platforms: its card shows each one and
+// links to the showcase below the list.
+const infernoPool = digitalProducts.find((item) => item.slug === "inferno-pool");
+
+const infernoPoolPlatforms: ProductCardPlatforms | undefined = infernoPool && {
+  badge: infernoPoolContent.card.badge,
+  releases: infernoPool.releases,
+  comingSoon: infernoPoolContent.platforms.comingSoon,
+  label: `${infernoPool.name} ${infernoPoolContent.platforms.platformsLabel.toLowerCase()}`,
+  showcase: { href: `#${infernoPoolContent.anchor}`, label: infernoPoolContent.card.showcaseLabel },
+};
+
+function platformsFor(slug: string) {
+  return slug === infernoPool?.slug ? infernoPoolPlatforms : undefined;
 }
 
 function findGame(slug?: string[]) {
@@ -94,11 +114,14 @@ export default async function GamesPage({ params }: Props) {
                 <ProductCard
                   key={game.slug}
                   app={game}
+                  platforms={platformsFor(game.slug)}
                 />
               ))}
             </div>
 
           </section>
+
+          {infernoPool && <InfernoPoolShowcase releases={infernoPool.releases} />}
 
         </main>
       );
@@ -119,9 +142,12 @@ export default async function GamesPage({ params }: Props) {
             <ProductCard
               key={game.slug}
               app={game}
+              platforms={platformsFor(game.slug)}
             />
           ))}
         </div>
+
+        {infernoPool && <InfernoPoolShowcase releases={infernoPool.releases} embedded />}
 
       </PageShell>
     );
@@ -131,6 +157,11 @@ export default async function GamesPage({ params }: Props) {
 
   if (!product) {
     notFound();
+  }
+
+  // Inferno Pool has its own page: hero, the playable web game, showcase.
+  if (infernoPool && product.slug === infernoPool.slug) {
+    return <InfernoPoolDetail releases={infernoPool.releases} />;
   }
 
   return (
